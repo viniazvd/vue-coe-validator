@@ -20,7 +20,7 @@ export default {
       type: String,
       default: ''
     },
-    validation: String,
+    validation: [String, Boolean],
     required: Boolean
   },
 
@@ -49,7 +49,7 @@ export default {
 
 .required { color: red; margin-top: 5px; }
 .-label { margin-top: 22px; }
-.-validation { margin-bottom: 22px; }
+.-validation { margin-bottom: 30px; }
 
 .validation {
   position: absolute;
