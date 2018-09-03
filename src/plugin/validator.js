@@ -9,6 +9,7 @@ function isValid (pattern, required, value) {
 export const validator = function (Vue, options) {
   Vue.prototype.$init = function (form, name, rules) {
     const defaultState = {
+      errorMsg: 'Campo obrigatório',
       isTouched: false,
       isDirty: false,
       isFilled: false,
@@ -17,7 +18,7 @@ export const validator = function (Vue, options) {
     
     const newForm = {
       [name]: Object.entries(form).reduce((form, [key, value]) => {
-        const isFilled = { $isFilled: !!value }
+        const isFilled = { isFilled: !!value }
         form[key] = { key, value, ...defaultState, ...isFilled, ...rules[key] }
 
         return form
@@ -53,5 +54,11 @@ export const validator = function (Vue, options) {
         ...inputUpdated 
       } 
     }
+  }
+
+  Vue.prototype.$hasError = function (key, form = Object.keys(this.forms)[0]) {
+    const input = Object.keys(this.forms).length > 1 ? this.forms[form][key] : form
+
+    return input.isTouched && !input.isValid && input.errorMsg
   }
 }
