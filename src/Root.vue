@@ -49,7 +49,7 @@
 import CInput from './components/CInput'
 
 // mixins
-import formSetup from './mixin/formSetup'
+import formSetup from './support/mixin/formSetup'
 
 const form1 = { input1: '', input2: '22' }
 const form2 = { input1: '33', input2: '' }
