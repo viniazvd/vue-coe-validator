@@ -69,17 +69,19 @@ export const validator = function (Vue, options) {
   }
 
   Vue.prototype.$allTouched = function (form = Object.keys(this.forms)[0]) {
-    const formTouched = Object.entries(this.forms[form]).reduce((acc, [key, value]) => {
-      acc = { ...value, isTouched: true }
+    const formToTouch = Object.entries(this.forms[form]).reduce((acc, [key, value]) => {
+      acc[key] = { ...value, isTouched: true }
 
       return acc
     }, {})
 
-    console.log(formTouched)
+    const formToUpdate = this.forms[form]
+
     this.forms = { 
       ...this.forms, 
       [form]: { 
-        ...formTouched 
+        ...formToUpdate,
+        ...formToTouch
       }
     }
   }
