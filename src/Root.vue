@@ -5,15 +5,15 @@
       <form v-if="forms.form1" @prevent.stop>
         <c-input 
           label="input1"
-          :validation="$hasError('input1', 'form1')"
-          :value="forms.form1.input1.value"
+          :validation="$hasError('input1')"
+          :value="$getValue('input1', 'form1')"
           @input="value => $synchronize(value, 'input1', 'form1')"
         />
         
         <c-input 
           label="input2" 
           :validation="$hasError('input2', 'form1')"
-          :value="forms.form1.input2.value"
+          :value="$getValue('input2', 'form1')"
           @input="value => $synchronize(value, 'input2', 'form1')"
         />
       </form>
@@ -27,14 +27,14 @@
         <c-input 
           label="input1" 
           :validation="$hasError('input1', 'form2')"
-          :value="forms.form2.input1.value"
+          :value="$getValue('input1', 'form2')"
           @input="value => $synchronize(value, 'input1', 'form2')"
         />
         
         <c-input 
           label="input2" 
           :validation="$hasError('input2', 'form2')"
-          :value="forms.form2.input2.value"
+          :value="$getValue('input2', 'form2')"
           @input="value => $synchronize(value, 'input2', 'form2')"
         />
       </form>
@@ -84,7 +84,7 @@ export default {
 
   methods: {
     submit (form) {
-      this.$allTouched(form)
+      // this.$allTouched(form)
     }
   },
 
