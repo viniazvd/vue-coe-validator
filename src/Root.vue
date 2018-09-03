@@ -4,13 +4,15 @@
       <h3>form1</h3>
       <form v-if="forms.form1" @prevent.stop>
         <c-input 
-          label="input1" 
+          label="input1"
+          :validation="$hasError('input1', 'form1')"
           :value="forms.form1.input1.value"
           @input="value => $synchronize(value, 'input1', 'form1')"
         />
         
         <c-input 
           label="input2" 
+          :validation="$hasError('input2', 'form1')"
           :value="forms.form1.input2.value"
           @input="value => $synchronize(value, 'input2', 'form1')"
         />
@@ -22,12 +24,14 @@
       <form v-if="forms.form2" @prevent.stop>
         <c-input 
           label="input1" 
+          :validation="$hasError('input1', 'form2')"
           :value="forms.form2.input1.value"
           @input="value => $synchronize(value, 'input1', 'form2')"
         />
         
         <c-input 
           label="input2" 
+          :validation="$hasError('input2', 'form2')"
           :value="forms.form2.input2.value"
           @input="value => $synchronize(value, 'input2', 'form2')"
         />
@@ -52,6 +56,7 @@ const form1WithRules = {
   },
   input2: {
     required: true,
+    errorMsg: 'Digite um e-mail',
     pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
   }
 }
@@ -79,3 +84,7 @@ export default {
   }
 }
 </script>
+
+<style>
+.input { margin-bottom: 15px; }
+</style>
