@@ -58,11 +58,9 @@ const form1WithRules = {
 
 const form2WithRules = {
   input1: {
-    // key: 'input1',
     required: true
   },
   input2: {
-    // key: 'input2',
     required: true,
     pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
   }
