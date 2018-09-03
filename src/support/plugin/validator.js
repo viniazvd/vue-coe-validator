@@ -79,4 +79,10 @@ export const validator = function (Vue, options) {
       }
     }
   }
+
+  Vue.prototype.$isValidForm = function (form = Object.keys(this.forms)[0]) {
+    const isValid = Object.entries(this.forms[form]).every(([key, { isValid }]) => isValid)
+
+    return isValid
+  }
 }
