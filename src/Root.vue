@@ -84,7 +84,7 @@ export default {
 
   methods: {
     submit (form) {
-      // this.$allTouched(form)
+      this.$allTouched(form)
     }
   },
 
