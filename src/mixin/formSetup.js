@@ -3,7 +3,6 @@ const formSetup = () => {
     data () {
       return {
         forms: {},
-        errors: {},
         initialForm: {}
       }
     }
