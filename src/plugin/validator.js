@@ -61,4 +61,20 @@ export const validator = function (Vue, options) {
 
     return input.isTouched && !input.isValid && input.errorMsg
   }
+
+  Vue.prototype.$allTouched = function (form = Object.keys(this.forms)[0]) {
+    const formTouched = Object.entries(this.forms[form]).reduce((acc, [key, value]) => {
+      acc = { ...value, isTouched: true }
+
+      return acc
+    }, {})
+
+    console.log(formTouched)
+    this.forms = { 
+      ...this.forms, 
+      [form]: { 
+        ...formTouched 
+      }
+    }
+  }
 }
