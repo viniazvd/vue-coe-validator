@@ -1,10 +1,4 @@
-function isValid (pattern, required, value) {
-  if (pattern) {
-    return pattern.test(value)
-  }
-
-  return required && !!value
-}
+import isValid from '../utils/isValid'
 
 export const validator = function (Vue, options) {
   Vue.prototype.$init = function (form, name, rules) {
