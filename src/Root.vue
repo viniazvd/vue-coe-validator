@@ -17,11 +17,13 @@
           @input="value => $synchronize(value, 'input2', 'form1')"
         />
       </form>
+
+      <button @click="submit('form1')">salvar</button>
     </section>
 
     <section>
       <h3>form2</h3>
-      <form v-if="forms.form2" @prevent.stop>
+      <form v-if="forms.form2" @prevent.stop @click="submit">
         <c-input 
           label="input1" 
           :validation="$hasError('input1', 'form2')"
@@ -36,6 +38,8 @@
           @input="value => $synchronize(value, 'input2', 'form2')"
         />
       </form>
+
+      <button @click="submit('form2')">salvar</button>
     </section>
   </div>
 </template>
@@ -77,6 +81,12 @@ export default {
   mixins: [ formSetup() ],
 
   components: { CInput },
+
+  methods: {
+    submit (form) {
+      this.$allTouched(form)
+    }
+  },
 
   mounted () {
     this.$init(form1, 'form1', form1WithRules)
