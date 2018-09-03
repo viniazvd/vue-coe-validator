@@ -18,12 +18,12 @@
         />
       </form>
 
-      <button @click="submit('form1')">salvar</button>
+      <button @click="submit1('form1')">salvar</button>
     </section>
 
     <section>
       <h3>form2</h3>
-      <form v-if="forms.form2" @prevent.stop @click="submit">
+      <form v-if="forms.form2" @prevent.stop>
         <c-input 
           label="input1" 
           :validation="$hasError('input1', 'form2')"
@@ -39,7 +39,7 @@
         />
       </form>
 
-      <button @click="submit('form2')">salvar</button>
+      <button @click="submit2('form2')">salvar</button>
     </section>
   </div>
 </template>
@@ -83,8 +83,21 @@ export default {
   components: { CInput },
 
   methods: {
-    submit (form) {
+    submit1 (form) {
       this.$allTouched(form)
+      const isValid = this.$isValidForm(form)
+      
+      if (isValid) {
+        console.log('save data form1')
+      }
+    },
+    submit2 (form) {
+      this.$allTouched(form)
+      const isValid = this.$isValidForm(form)
+      
+      if (isValid) {
+        console.log('save data form2')
+      }
     }
   },
 
