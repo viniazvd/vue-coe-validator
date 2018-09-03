@@ -29,6 +29,12 @@ export const validator = function (Vue, options) {
     this.initialForm = { ...this.initialForm, ...newForm }
   }
 
+  Vue.prototype.$getValue = function (input, form) {
+    const value = Object.keys(this.forms).length > 1 ? this.forms[form][input].value : this.forms[0][input].value
+    
+    return value
+  }
+
   Vue.prototype.$synchronize = function (value, key, form = '') {
     if (!form) { console.warn('select a form to synchronize the data.') }
 
