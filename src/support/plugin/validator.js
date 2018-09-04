@@ -29,12 +29,12 @@ export const validator = function (Vue, { defaultFormName }) {
   }
 
   Vue.prototype.$touch = function (input, form = defaultForm(this.forms, defaultFormName)) {
-    const isAlreadyTouched = this.forms[form][input].isTouched
+    const { isTouched } = this.forms[form][input]
 
     // to prevent unnecessary checks
-    if (!isAlreadyTouched) {
+    if (!isTouched) {
       const inputToTouch = Object.entries(this.forms[form][input]).reduce((acc, [key, value]) => {
-        key === 'isTouched' ? acc[key] = true : acc[key] = value
+        acc[key] = key === 'isTouched' || value
   
         return acc
       }, {})
