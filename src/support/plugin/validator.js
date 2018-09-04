@@ -1,7 +1,7 @@
-import isValid from '../utils/isValid'
+import { isValid, defaultForm } from '../utils'
 
-export const validator = function (Vue, options) {
-  Vue.prototype.$init = function (form, name, rules) {
+export const validator = function (Vue, { defaultFormName }) {
+  Vue.prototype.$init = function (data, rules, form = defaultFormName) {
     const defaultState = {
       errorMsg: 'Campo obrigatório',
       isTouched: false,
@@ -11,7 +11,7 @@ export const validator = function (Vue, options) {
     } 
     
     const newForm = {
-      [name]: Object.entries(form).reduce((form, [key, value]) => {
+      [form]: Object.entries(data).reduce((form, [key, value]) => {
         const required = rules[key]['required']
         const pattern = rules[key]['pattern']
         
@@ -28,7 +28,7 @@ export const validator = function (Vue, options) {
     this.initialForm = { ...this.initialForm, ...newForm }
   }
 
-  Vue.prototype.$touch = function (input, form = Object.keys(this.forms)[0]) {
+  Vue.prototype.$touch = function (input, form = defaultForm(this.forms, defaultFormName)) {
     const isAlreadyTouched = this.forms[form][input].isTouched
 
     // to prevent unnecessary checks
@@ -51,13 +51,13 @@ export const validator = function (Vue, options) {
     }
   }
 
-  Vue.prototype.$getValue = function (input, form) {
+  Vue.prototype.$getValue = function (input, form = defaultForm(this.forms, defaultFormName)) {
     const value = Object.keys(this.forms).length > 1 ? this.forms[form][input].value : this.forms[0][input].value
     
     return value
   }
 
-  Vue.prototype.$synchronize = function (value, key, form = '') {
+  Vue.prototype.$synchronize = function (value, key, form = defaultForm(this.forms, defaultFormName)) {
     if (!form) { console.warn('select a form to synchronize the data.') }
 
     const pattern = Object.keys(this.forms).length > 1 ? this.forms[form][key].pattern : this.forms[0][key].pattern
@@ -84,13 +84,13 @@ export const validator = function (Vue, options) {
     }
   }
 
-  Vue.prototype.$hasError = function (key, form = Object.keys(this.forms)[0]) {
+  Vue.prototype.$hasError = function (key, form = defaultForm(this.forms, defaultFormName)) {
     const input = Object.keys(this.forms).length > 1 ? this.forms[form][key] : form
 
     return input.isTouched && !input.isValid && input.errorMsg
   }
 
-  Vue.prototype.$allTouched = function (form = Object.keys(this.forms)[0]) {
+  Vue.prototype.$allTouched = function (form = defaultForm(this.forms, defaultFormName)) {
     const formToTouch = Object.entries(this.forms[form]).reduce((acc, [key, value]) => {
       acc[key] = { ...value, isTouched: true }
 
@@ -108,7 +108,7 @@ export const validator = function (Vue, options) {
     }
   }
 
-  Vue.prototype.$isValidForm = function (form = Object.keys(this.forms)[0]) {
+  Vue.prototype.$isValidForm = function (form = defaultForm(this.forms, defaultFormName)) {
     const isValid = Object.entries(this.forms[form]).every(([key, { isValid }]) => isValid)
 
     return isValid
