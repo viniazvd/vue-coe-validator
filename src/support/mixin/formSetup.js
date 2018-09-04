@@ -1,10 +1,8 @@
-const formSetup = () => {
-  return {  
-    data () {
-      return {
-        forms: {},
-        initialForm: {}
-      }
+const formSetup = {
+  data () {
+    return {
+      forms: {},
+      initialForm: {}
     }
   }
 }
