@@ -78,7 +78,7 @@ const customRules2 = {
 export default {
   name: 'root',
 
-  mixins: [ formSetup() ],
+  mixins: [ formSetup ],
 
   components: { CInput },
 
