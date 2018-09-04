@@ -1,6 +1,6 @@
 import { isValid, defaultForm } from '../utils'
 
-export const validator = function (Vue, { defaultFormName }) {
+export default function (Vue, { defaultFormName }) {
   Vue.prototype.$init = function (data, rules, form = defaultFormName) {
     const defaultState = {
       errorMsg: 'Campo obrigatório',
