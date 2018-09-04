@@ -12,8 +12,13 @@ export const validator = function (Vue, options) {
     
     const newForm = {
       [name]: Object.entries(form).reduce((form, [key, value]) => {
-        const isFilled = { isFilled: !!value }
-        form[key] = { key, value, ...defaultState, ...isFilled, ...rules[key] }
+        const required = rules[key]['required']
+        const pattern = rules[key]['pattern']
+        
+        const valid = { isValid: !!value && isValid(pattern, required, value) }
+        const filled = { isFilled: !!value }
+
+        form[key] = { key, value, ...defaultState, ...valid, ...filled, ...rules[key] }
 
         return form
       }, {})
