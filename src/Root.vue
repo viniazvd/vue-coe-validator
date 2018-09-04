@@ -54,7 +54,7 @@ import formSetup from './support/mixin/formSetup'
 const form1 = { input1: '', input2: '22' }
 const form2 = { input1: '33', input2: '' }
 
-const form1WithRules = {
+const customRules1 = {
   input1: {
     required: true
   },
@@ -65,7 +65,7 @@ const form1WithRules = {
   }
 }
 
-const form2WithRules = {
+const customRules2 = {
   input1: {
     required: true
   },
@@ -102,8 +102,8 @@ export default {
   },
 
   mounted () {
-    this.$init(form1, 'form1', form1WithRules)
-    this.$init(form2, 'form2', form2WithRules)
+    this.$init(form1, 'form1', customRules1)
+    this.$init(form2, 'form2', customRules2)
   }
 }
 </script>
