@@ -8,6 +8,7 @@
           :validation="$hasError('input1')"
           :value="$getValue('input1', 'form1')"
           @input="value => $synchronize(value, 'input1', 'form1')"
+          @blur="$touch('input1', 'form1')"
         />
         
         <c-input 
@@ -15,6 +16,7 @@
           :validation="$hasError('input2', 'form1')"
           :value="$getValue('input2', 'form1')"
           @input="value => $synchronize(value, 'input2', 'form1')"
+          @blur="$touch('input2', 'form1')"
         />
       </form>
 
@@ -29,6 +31,7 @@
           :validation="$hasError('input1', 'form2')"
           :value="$getValue('input1', 'form2')"
           @input="value => $synchronize(value, 'input1', 'form2')"
+          @blur="$touch('input1', 'form2')"
         />
         
         <c-input 
@@ -36,6 +39,7 @@
           :validation="$hasError('input2', 'form2')"
           :value="$getValue('input2', 'form2')"
           @input="value => $synchronize(value, 'input2', 'form2')"
+          @blur="$touch('input2', 'form2')"
         />
       </form>
 
@@ -83,6 +87,9 @@ export default {
   components: { CInput },
 
   methods: {
+    touch () {
+      console.log('das')
+    },
     submit1 (form) {
       this.$allTouched(form)
       const isValid = this.$isValidForm(form)
