@@ -3,7 +3,9 @@ import Root from './Root.vue'
 
 import { validator } from './support/plugin/validator'
 
-Vue.use(validator)
+Vue.use(validator, {
+  defaultFormName: 'form1'
+})
 
 // validator.registerCustomEvent('validator', {})
 
