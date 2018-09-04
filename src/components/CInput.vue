@@ -3,6 +3,7 @@
     <input
       class="input"
       v-bind="$attrs"
+      v-on="$listeners"
       :value="value"
       @input="v => $emit('input', v.target.value)"
     >
