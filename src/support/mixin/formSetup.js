@@ -18,6 +18,10 @@ const formSetup = {
     } else {
       console.warn('follow the instructions in the documentation to correctly register the data')
     }
+
+    // this.$watch('forms.form1.input2', value => {
+    //   console.log('value', value)
+    // }, { deep: true })
   },
 
   data () {
