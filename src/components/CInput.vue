@@ -5,7 +5,7 @@
       v-bind="$attrs"
       @blur="$listeners['blur']"
       :value="value"
-      @input="v => $emit('input', v.target.value)"
+      @input="v => $emit('input', v)"
     >
   </c-input-container>
 </template>
