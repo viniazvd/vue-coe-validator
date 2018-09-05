@@ -55,36 +55,41 @@ import CInput from './components/CInput'
 // mixins
 import formSetup from './support/mixin/formSetup'
 
-const form1 = { input1: '', input2: '22' }
-const form2 = { input1: '33', input2: '' }
-
-const customRules1 = {
-  input1: {
-    required: true
-  },
-  input2: {
-    required: true,
-    errorMsg: 'Digite um e-mail',
-    pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
-  }
-}
-
-const customRules2 = {
-  input1: {
-    required: true
-  },
-  input2: {
-    required: true,
-    pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
-  }
-}
-
 export default {
   name: 'root',
 
   mixins: [ formSetup ],
 
   components: { CInput },
+
+  validation: {
+    data: {
+      form1: { input1: '', input2: '22' },
+      form2: { input1: '33', input2: '' }
+    },
+
+    rules: {
+      form1: {
+        input1: {
+          required: true
+        },
+        input2: {
+          required: true,
+          errorMsg: 'Digite um e-mail',
+          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
+        }
+      },
+      form2: {
+        input1: {
+          required: true
+        },
+        input2: {
+          required: true,
+          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
+        }
+      }
+    }
+  },
 
   methods: {
     submit1 (form) {
@@ -103,11 +108,6 @@ export default {
         console.log('save data form2')
       }
     }
-  },
-
-  mounted () {
-    this.$init(form1, customRules1)
-    this.$init(form2, customRules2, 'form2')
   }
 }
 </script>
