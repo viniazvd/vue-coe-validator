@@ -2,20 +2,22 @@
   <div id="app">
     <section>
       <h3>form1</h3>
-      <form v-if="forms.form1" @prevent.stop>
+      <form v-if="forms.form1" name="form1" @prevent.stop>
         <c-input 
+          name="input1"
           label="input1"
           :validation="$hasError('input1')"
           :value="$getValue('input1')"
-          @input="value => $synchronize(value, 'input1')"
+          @input="value => $synchronize(value)"
           @blur="$touch('input1')"
         />
         
         <c-input 
+          name="input2"
           label="input2" 
           :validation="$hasError('input2')"
           :value="$getValue('input2')"
-          @input="value => $synchronize(value, 'input2')"
+          @input="value => $synchronize(value)"
           @blur="$touch('input2')"
         />
       </form>
@@ -25,20 +27,22 @@
 
     <section>
       <h3>form2</h3>
-      <form v-if="forms.form2" @prevent.stop>
+      <form v-if="forms.form2" name="form2" @prevent.stop>
         <c-input 
+          name="input1"
           label="input1" 
           :validation="$hasError('input1', 'form2')"
           :value="$getValue('input1', 'form2')"
-          @input="value => $synchronize(value, 'input1', 'form2')"
+          @input="value => $synchronize(value)"
           @blur="$touch('input1', 'form2')"
         />
         
         <c-input 
+          name="input2"
           label="input2" 
           :validation="$hasError('input2', 'form2')"
           :value="$getValue('input2', 'form2')"
-          @input="value => $synchronize(value, 'input2', 'form2')"
+          @input="value => $synchronize(value)"
           @blur="$touch('input2', 'form2')"
         />
       </form>
