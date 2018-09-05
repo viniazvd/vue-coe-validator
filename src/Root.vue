@@ -2,8 +2,8 @@
   <div id="app">
     <section>
       <h3>form1</h3>
-      <form v-if="forms.form1" name="form1" @prevent.stop>
-        <c-input 
+      <form name="form1" @prevent.stop>
+        <c-input
           name="input1"
           label="input1"
           :validation="$hasError('input1')"
@@ -11,10 +11,10 @@
           @input="value => $synchronize(value)"
           @blur="$touch('input1')"
         />
-        
-        <c-input 
+
+        <c-input
           name="input2"
-          label="input2" 
+          label="input2"
           :validation="$hasError('input2')"
           :value="$getValue('input2')"
           @input="value => $synchronize(value)"
@@ -27,19 +27,19 @@
 
     <section>
       <h3>form2</h3>
-      <form v-if="forms.form2" name="form2" @prevent.stop>
-        <c-input 
+      <form name="form2" @prevent.stop>
+        <c-input
           name="input1"
-          label="input1" 
+          label="input1"
           :validation="$hasError('input1', 'form2')"
           :value="$getValue('input1', 'form2')"
           @input="value => $synchronize(value)"
           @blur="$touch('input1', 'form2')"
         />
-        
-        <c-input 
+
+        <c-input
           name="input2"
-          label="input2" 
+          label="input2"
           :validation="$hasError('input2', 'form2')"
           :value="$getValue('input2', 'form2')"
           @input="value => $synchronize(value)"
@@ -80,7 +80,7 @@ export default {
         input2: {
           required: true,
           errorMsg: 'Digite um e-mail',
-          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
+          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
         }
       },
       form2: {
@@ -89,7 +89,7 @@ export default {
         },
         input2: {
           required: true,
-          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i 
+          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
         }
       }
     }
@@ -99,7 +99,7 @@ export default {
     submit1 (form) {
       this.$allTouched(form)
       const isValid = this.$isValidForm(form)
-      
+
       if (isValid) {
         console.log('save data form1')
       }
@@ -107,7 +107,7 @@ export default {
     submit2 (form) {
       this.$allTouched(form)
       const isValid = this.$isValidForm(form)
-      
+
       if (isValid) {
         console.log('save data form2')
       }

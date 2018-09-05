@@ -19,7 +19,22 @@ const formSetup = {
       console.warn('follow the instructions in the documentation to correctly register the data')
     }
 
-    // this.$watch('forms.form1.input2', value => {
+    const forms = this.$el.querySelectorAll('form[name]')
+    console.log(forms)
+
+    const result = forms.forEach(({ elements }) => {
+      Array.from(elements).forEach(({ name }) => {
+        console.log('input name', name)
+      })
+    })
+
+    console.log(result)
+
+    // 'form1'.addEventListener('blur', function (event) {
+    //   console.log('event', event)
+    // }, true)
+
+    // this.$watch('input2', value => {
     //   console.log('value', value)
     // }, { deep: true })
   },
@@ -32,4 +47,4 @@ const formSetup = {
   }
 }
 
-export default formSetup 
+export default formSetup
