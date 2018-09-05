@@ -58,7 +58,12 @@ export default {
       return value
     }
   
-    Vue.prototype.$synchronize = function (value, key, form = defaultForm(this.forms, defaultFormName)) {
+    Vue.prototype.$synchronize = function (e) {
+      const value = e.target.value
+      const key = e.target.name
+      const formName = e.target.form.name 
+      const form = defaultForm(this.forms, formName || defaultFormName)
+      
       if (!form) { console.warn('select a form to synchronize the data.') }
   
       const pattern = Object.keys(this.forms).length > 1 ? this.forms[form][key].pattern : this.forms[0][key].pattern
