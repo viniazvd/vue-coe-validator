@@ -1,6 +1,6 @@
 import { defaultForm } from '../utils'
 
-import rules from '../../rules/types'
+import RULES from '../../rules/types'
 import VALIDATIONS from '../../rules'
 
 export default {
@@ -45,26 +45,10 @@ export default {
 
       if (!form) { console.warn('select a form to synchronize the data.') }
 
-      // const required = Object.keys(this.forms).length > 1 ? this.forms[form][key].required : this.forms[0][key].required
-      // const pattern = Object.keys(this.forms).length > 1 ? this.forms[form][key].pattern : this.forms[0][key].pattern
-      // const numeric = Object.keys(this.forms).length > 1 ? this.forms[form][key].numeric : this.forms[0][key].numeric
-      // const alpha = Object.keys(this.forms).length > 1 ? this.forms[form][key].alpha : this.forms[0][key].alpha
-      // const alphabetic = Object.keys(this.forms).length > 1 ? this.forms[form][key].alphabetic : this.forms[0][key].alphabetic
-
-      // const VALIDATIONS = (value, forms) => {
-      //   return {
-      //     required: validation.required.call(null),
-      //     pattern: validation.pattern,
-      //     numeric: () => !Array.isArray(value) && !/^[0-9]*$/.test(value) && 'Precisa ser numeric',
-      //     alpha: () => !Array.isArray(value) && !/^\s*([0-9a-zA-Z]*)\s*$/.test(value) && 'Precisa ser um alpha',
-      //     alphabetic: () => !Array.isArray(value) && !/^[a-zA-Z]*$/.test(value) && 'Precisa ser alphabetic'
-      //   }
-      // }
-
       let errors = []
 
       Object.keys(this.forms[form][key]).forEach(required => {
-        rules.some(rule => {
+        RULES.some(rule => {
           if (required === rule) {
             const error = VALIDATIONS[rule](value, this.forms, form, key)
             if (error) errors = [ ...errors, error ]
