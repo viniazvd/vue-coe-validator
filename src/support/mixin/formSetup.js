@@ -19,20 +19,17 @@ const formSetup = {
       console.warn('follow the instructions in the documentation to correctly register the data')
     }
 
+    // dynamically records listeners to activate touch inputs
     const forms = this.$el.querySelectorAll('form[name]')
-    console.log(forms)
-
-    const result = forms.forEach(({ elements }) => {
-      Array.from(elements).forEach(({ name }) => {
-        console.log('input name', name)
+    if (forms.length) {
+      forms.forEach(form => {
+        Array.from(form.elements).forEach((element, index) => {
+          form[index].addEventListener('blur', () => this.$touch(element.name, form.name), true)
+        })
       })
-    })
-
-    console.log(result)
-
-    // 'form1'.addEventListener('blur', function (event) {
-    //   console.log('event', event)
-    // }, true)
+    } else {
+      console.warn('follow the instructions in the documentation to correctly register the form')
+    }
 
     // this.$watch('input2', value => {
     //   console.log('value', value)
