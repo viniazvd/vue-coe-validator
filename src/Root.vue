@@ -64,7 +64,7 @@ export default {
       form1: {
         input1: {
           required: true,
-          numeric: true
+          alphabetic: true
         },
         input2: {
           required: true,
