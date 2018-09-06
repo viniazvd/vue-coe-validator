@@ -3,7 +3,6 @@
     <input
       class="input"
       v-bind="$attrs"
-      @blur="$listeners['blur']"
       :value="value"
       @input="v => $emit('input', v)"
     >
