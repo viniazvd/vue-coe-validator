@@ -9,7 +9,6 @@
           :validation="$hasError('input1')"
           :value="$getValue('input1')"
           @input="value => $synchronize(value)"
-          @blur="$touch('input1')"
         />
 
         <c-input
@@ -18,7 +17,6 @@
           :validation="$hasError('input2')"
           :value="$getValue('input2')"
           @input="value => $synchronize(value)"
-          @blur="$touch('input2')"
         />
       </form>
 
@@ -34,7 +32,6 @@
           :validation="$hasError('input1', 'form2')"
           :value="$getValue('input1', 'form2')"
           @input="value => $synchronize(value)"
-          @blur="$touch('input1', 'form2')"
         />
 
         <c-input
@@ -43,7 +40,6 @@
           :validation="$hasError('input2', 'form2')"
           :value="$getValue('input2', 'form2')"
           @input="value => $synchronize(value)"
-          @blur="$touch('input2', 'form2')"
         />
       </form>
 
