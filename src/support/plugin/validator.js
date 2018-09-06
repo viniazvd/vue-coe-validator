@@ -39,8 +39,8 @@ export default {
     }
 
     Vue.prototype.$synchronize = function (e) {
-      const value = e.target.value
-      const key = e.target.name
+      const { value } = e.target
+      const { name: key } = e.target
       const form = e.target.form.name || defaultFormName
 
       if (!form) { console.warn('select a form to synchronize the data.') }
@@ -98,6 +98,8 @@ export default {
             [input]: { ...inputToTouch }
           }
         }
+
+        // this.$synchronize()
       }
     }
 
