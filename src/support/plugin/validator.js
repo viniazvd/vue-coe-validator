@@ -1,6 +1,7 @@
 import { defaultForm } from '../utils'
 
-// import required from '../../rules'
+import rules from '../../rules/types'
+import VALIDATIONS from '../../rules'
 
 export default {
   install (Vue, { defaultFormName }) {
@@ -45,44 +46,27 @@ export default {
       if (!form) { console.warn('select a form to synchronize the data.') }
 
       // const required = Object.keys(this.forms).length > 1 ? this.forms[form][key].required : this.forms[0][key].required
-      const pattern = Object.keys(this.forms).length > 1 ? this.forms[form][key].pattern : this.forms[0][key].pattern
-      const numeric = Object.keys(this.forms).length > 1 ? this.forms[form][key].numeric : this.forms[0][key].numeric
-      const alpha = Object.keys(this.forms).length > 1 ? this.forms[form][key].alpha : this.forms[0][key].alpha
-      const alphabetic = Object.keys(this.forms).length > 1 ? this.forms[form][key].alphabetic : this.forms[0][key].alphabetic
+      // const pattern = Object.keys(this.forms).length > 1 ? this.forms[form][key].pattern : this.forms[0][key].pattern
+      // const numeric = Object.keys(this.forms).length > 1 ? this.forms[form][key].numeric : this.forms[0][key].numeric
+      // const alpha = Object.keys(this.forms).length > 1 ? this.forms[form][key].alpha : this.forms[0][key].alpha
+      // const alphabetic = Object.keys(this.forms).length > 1 ? this.forms[form][key].alphabetic : this.forms[0][key].alphabetic
 
-      const requireds = Object.keys(this.forms[form][key]).filter(props => {
-        return props !== 'isTouched' && 
-               props !== 'isValid' && 
-               props !== 'isFilled' && 
-               props !== 'isDirty' &&
-               props !== 'errors' &&
-               props !== 'key' &&
-               props !== 'value'
-      })
-      const rules = [
-        'required', 
-        'pattern', 
-        'numeric', 
-        'alpha',
-        'alphabetic'
-      ]
-      
-      const VALIDATIONS = value => {
-        return {
-          required: !value && 'Campo obrigatório',
-          pattern: !!pattern && !pattern.test(value) && 'Campo inválido',
-          numeric: !!numeric && !Array.isArray(value) && !/^[0-9]*$/.test(value) && 'Precisa ser numeric',
-          alpha: !!alpha && !Array.isArray(value) && !/^\s*([0-9a-zA-Z]*)\s*$/.test(value) && 'Precisa ser um alpha',
-          alphabetic: !!alphabetic && !Array.isArray(value) && !/^[a-zA-Z]*$/.test(value) && 'Precisa ser alphabetic'
-        } 
-      }
-      
+      // const VALIDATIONS = (value, forms) => {
+      //   return {
+      //     required: validation.required.call(null),
+      //     pattern: validation.pattern,
+      //     numeric: () => !Array.isArray(value) && !/^[0-9]*$/.test(value) && 'Precisa ser numeric',
+      //     alpha: () => !Array.isArray(value) && !/^\s*([0-9a-zA-Z]*)\s*$/.test(value) && 'Precisa ser um alpha',
+      //     alphabetic: () => !Array.isArray(value) && !/^[a-zA-Z]*$/.test(value) && 'Precisa ser alphabetic'
+      //   }
+      // }
+
       let errors = []
 
-      requireds.forEach(required => {
+      Object.keys(this.forms[form][key]).forEach(required => {
         rules.some(rule => {
           if (required === rule) {
-            const error = VALIDATIONS(value)[rule]
+            const error = VALIDATIONS[rule](value, this.forms, form, key)
             if (error) errors = [ ...errors, error ]
           }
         })
