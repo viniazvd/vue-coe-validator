@@ -1,5 +1,3 @@
-function required (value) {
+export default function (value) {
   return !value && 'Campo obrigatório'
 }
-
-export default required
