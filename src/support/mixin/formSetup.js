@@ -1,6 +1,6 @@
 const formSetup = {
   mounted () {
-    const validation = this.$options.validation
+    const { validation } = this.$options
 
     if (validation && validation.data) {
       const { data, rules } = validation
