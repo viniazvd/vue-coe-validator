@@ -33,14 +33,6 @@
           :value="$getValue('input1', 'form2')"
           @input="value => $synchronize(value)"
         />
-
-        <c-input
-          name="input2"
-          label="input2"
-          :validation="$hasError('input2', 'form2')"
-          :value="$getValue('input2', 'form2')"
-          @input="value => $synchronize(value)"
-        />
       </form>
 
       <button @click="submit2('form2')">salvar</button>
@@ -65,27 +57,24 @@ export default {
   validation: {
     data: {
       form1: { input1: '', input2: '22' },
-      form2: { input1: '33', input2: '' }
+      form2: { input1: '33' }
     },
 
     rules: {
       form1: {
         input1: {
-          required: true
+          required: true,
+          numeric: true
         },
         input2: {
           required: true,
-          errorMsg: 'Digite um e-mail',
           pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
         }
       },
       form2: {
         input1: {
-          required: true
-        },
-        input2: {
           required: true,
-          pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
+          alpha: true
         }
       }
     }
