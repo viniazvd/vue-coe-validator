@@ -38,10 +38,10 @@ export default {
       }
     }
 
-    Vue.prototype.$synchronize = function (e) {
-      const { value } = e.target
-      const { name: key } = e.target
-      const form = e.target.form.name || defaultFormName
+    Vue.prototype.$synchronize = function (e, inputTouched, formTouched) {
+      const value = (e && e.target) || ''
+      const key = (e && e.target.name) || inputTouched
+      const form = (e && e.target && e.target.form.name) || formTouched || defaultFormName
 
       if (!form) { console.warn('select a form to synchronize the data.') }
 
@@ -99,7 +99,8 @@ export default {
           }
         }
 
-        // this.$synchronize()
+        // forced validation
+        this.$synchronize(null, input, form)
       }
     }
 
