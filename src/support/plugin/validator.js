@@ -133,5 +133,20 @@ export default {
 
       return isValid
     }
+
+    // Vue.prototype.$resetForm = function (form = defaultForm(this.forms, defaultFormName)) {
+    //   const defaultState = {
+    //     isTouched: false,
+    //     isDirty: false,
+    //     isFilled: false,
+    //     isValid: false,
+    //     value: '',
+    //     errors: []
+    //   }
+      
+    //   const formReseted = Object.entries(this.forms[form]).map(([_, value]) => ({ ...value, ...defaultState }))
+
+    //   this.forms = { ...this.forms, ...formReseted }
+    // }
   }
 }
