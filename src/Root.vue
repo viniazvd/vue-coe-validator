@@ -8,7 +8,7 @@
           label="input1"
           :validation="$hasError('input1')"
           :value="$getValue('input1')"
-          @input="value => $synchronize(value)"
+          @input="value => $synchronize(value)" 
         />
 
         <c-input
