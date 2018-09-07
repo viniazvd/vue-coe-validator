@@ -39,7 +39,7 @@ export default {
     }
 
     Vue.prototype.$synchronize = function (e, inputTouched, formTouched) {
-      const value = (e && e.target) || ''
+      const value = (e && e.target.value) || ''
       const key = (e && e.target.name) || inputTouched
       const form = (e && e.target && e.target.form.name) || formTouched || defaultFormName
 
