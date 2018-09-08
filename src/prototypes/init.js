@@ -18,5 +18,4 @@ export default function (data, rules, form) {
   }
 
   this.forms = { ...this.forms, ...newForm }
-  this.initialForm = { ...this.initialForm, ...newForm }
 }

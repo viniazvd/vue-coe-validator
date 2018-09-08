@@ -38,8 +38,7 @@ const formSetup = {
 
   data () {
     return {
-      forms: {},
-      initialForm: {}
+      forms: {}
     }
   }
 }

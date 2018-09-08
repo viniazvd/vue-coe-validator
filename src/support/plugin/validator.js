@@ -8,7 +8,7 @@ import VALIDATIONS from '../../rules'
 export default {
   install (Vue, { defaultFormName }) {
     // Vue.prototype.$init = prototypes.init
-    
+
     Vue.prototype.$init = function (data, rules, form = defaultFormName) {
       const defaultState = {
         isTouched: false,
@@ -29,7 +29,6 @@ export default {
       }
 
       this.forms = { ...this.forms, ...newForm }
-      this.initialForm = { ...this.initialForm, ...newForm }
     }
 
     Vue.prototype.$getValue = function (input, form = defaultForm(this.forms, defaultFormName)) {
