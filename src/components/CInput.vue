@@ -4,7 +4,7 @@
       class="input"
       v-bind="$attrs"
       :value="value"
-      @input="v => $emit('input', v)"
+      @input="v => $emit('input', v.target.value)"
     >
   </c-input-container>
 </template>
