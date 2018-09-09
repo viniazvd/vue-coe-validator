@@ -2,16 +2,21 @@ const formSetup = {
   mounted () {
     const { validation } = this.$options
 
-    if (validation && validation.data) {
-      const { data, rules } = validation
-
+    if (validation) {
       Object
-        .entries(data)
-        .map(([ key, value ]) => ({ key, value }))
-        .find(({ key, value }) => {
-          Object.entries(rules).find(([keyRule, valueRule]) => {
-            if (key === keyRule) {
-              this.$init(value, valueRule, key)
+        .entries(this.$data)
+        .find(([ keyForm, valueForm ]) => {
+          Object.entries(validation).find(([keyValidation, objectValidations]) => {
+            if (keyForm === keyValidation) {
+              for (const input in valueForm) {
+                this.$watch(keyForm.concat('.', input), value => {
+                  this.validations = this.$validate(this.validations, keyForm, input, value)
+                })
+              }
+              this.validations = { 
+                ...this.validations, 
+                ...this.$init(objectValidations, keyForm) 
+              }
             }
           })
         })
@@ -24,21 +29,36 @@ const formSetup = {
     if (forms.length) {
       forms.forEach(form => {
         Array.from(form.elements).forEach((element, index) => {
-          form[index].addEventListener('blur', () => this.$touch(element.name, form.name), true)
+          form[index].addEventListener('blur', () =>
+            (
+              this.validations = {
+                ...this.validations,
+                ...this.$touch(this.validations, form.name, element.name, element.value)
+              }
+            ), 
+          { once: true })
         })
       })
     } else {
       console.warn('follow the instructions in the documentation to correctly register the form')
     }
-
-    // this.$watch('input2', value => {
-    //   console.log('value', value)
-    // }, { deep: true })
   },
 
   data () {
     return {
-      forms: {}
+      validations: {}
+    }
+  },
+
+  methods: {
+    $hasError (key, form) {
+      if (this.validations && Object.keys(this.validations).length) {
+        const input = this.validations[form][key]
+
+        return input.isTouched && !input.isValid && input.errors[0]
+      }
+
+      return false   
     }
   }
 }

@@ -1,4 +1,4 @@
-export default function (data, rules, form) {
+export default function (validations, form) {
   const defaultState = {
     isTouched: false,
     isDirty: false,
@@ -7,15 +7,15 @@ export default function (data, rules, form) {
     errors: []
   }
 
-  const newForm = {
-    [form]: Object.entries(data).reduce((form, [key, value]) => {
+  const initialForm = {
+    [form]: Object.entries(validations).reduce((form, [key, value]) => {
       const filled = { isFilled: !!value }
 
-      form[key] = { key, value, ...defaultState, ...filled, ...rules[key] }
+      form[key] = { ...defaultState, ...filled, ...validations[key] }
 
       return form
     }, {})
   }
 
-  this.forms = { ...this.forms, ...newForm }
+  return initialForm
 }
