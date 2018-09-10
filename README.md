@@ -99,7 +99,7 @@ export default {
 
 <details>
 <summary>
-  <a href='#validations-alphabetic'><b>alphabetic</b></a>
+  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alphabetic.js'><b>alphabetic</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
       <li>Must be a alphabetic value</li>
@@ -117,7 +117,7 @@ export default {
 
 <details>
 <summary>
-  <a href='#validations-alpha'><b>alpha</b></a>
+  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alpha.js'><b>alpha</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
       <li>Must only contain letters and numbers</li>
@@ -135,7 +135,27 @@ export default {
 
 <details>
 <summary>
-  <a href='#validations-numeric'><b>numeric</b></a>
+  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/pattern.js'><b>pattern</b></a>
+  <p style='margin: 0; '>
+    <ul style='margin: 0; padding: 0; list-style-type: none;'>
+      <li><b>msg:</b> Must be a numeric string</li>
+      <li><b>arg:</b> String</li>
+    </ul>
+  </p>
+</summary>
+
+```javascript
+{
+  numeric: true,
+}
+```
+</details>
+
+
+
+<details>
+<summary>
+  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/numeric.js'><b>numeric</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
       <li><b>msg:</b> Must be a numeric value</li>
@@ -153,7 +173,7 @@ export default {
 
 <details>
 <summary>
-  <a href='#validations-required'><b>required</b></a>
+  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/required.js'><b>required</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
       <li><b>msg:</b> Required</li>
