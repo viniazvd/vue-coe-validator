@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Root from './Root.vue'
 
-import validator from '../src/support/plugin/validator'
+import { validator } from 'vue-coe-validator'
 
 Vue.use(validator)
 

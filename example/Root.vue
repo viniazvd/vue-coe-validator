@@ -42,7 +42,7 @@
 import CInput from './components/CInput'
 
 // mixins
-import mixin from 'vue-coe-validator'
+import { formSetup } from 'vue-coe-validator'
 
 export default {
   name: 'root',
