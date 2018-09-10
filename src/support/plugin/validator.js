@@ -1,4 +1,4 @@
-import prototypes from '../../prototypes'
+import * as prototypes from '../../prototypes'
 
 export default {
   install (Vue, options) {
