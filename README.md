@@ -27,39 +27,6 @@ Vue.use(validator)
 ```
 **Use**
 ```vue
-import { formSetup } from 'vue-coe-validator'
-
-export default {
-  mixins: [ formSetup ],
-
-  data () {
-    return {
-      form1: { input1: '', input2: '22' },
-      form2: { input1: '33' }
-    }
-  },
-
-  validation: {
-    form1: {
-      input1: {
-        required: true,
-        alphabetic: true
-      },
-      input2: {
-        required: true,
-        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
-      }
-    },
-    form2: {
-      input1: {
-        required: true,
-        alpha: true
-      }
-    }
-  }
-}
-</script>
-
 <template>
   <div id="app">
     <section>
@@ -92,6 +59,40 @@ export default {
     </section>
   </div>
 </template>
+
+<script>
+import { formSetup } from 'vue-coe-validator'
+
+export default {
+  mixins: [ formSetup ],
+
+  data () {
+    return {
+      form1: { input1: '', input2: '22' },
+      form2: { input1: '33' }
+    }
+  },
+
+  validation: {
+    form1: {
+      input1: {
+        required: true,
+        alphabetic: true
+      },
+      input2: {
+        required: true,
+        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
+      }
+    },
+    form2: {
+      input1: {
+        required: true,
+        alpha: true
+      }
+    }
+  }
+}
+</script>
 ```
 
 ## Validations
