@@ -168,5 +168,3 @@ export default {
 }
 ```
 </details>
-
-<b>*</b> - the **arg** is optional.
