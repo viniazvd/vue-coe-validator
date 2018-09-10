@@ -10,7 +10,8 @@
     "input",
     "form"
   ],
-  "files": ["/dist"],
+  "main": "dist/vue-coe-validator.js",
+  "files": ["dist"],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
@@ -28,6 +29,5 @@
     "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.17"
   },
-  "main": "dist/vue-coe-validator.cjs.js",
   "dependencies": {}
 }
