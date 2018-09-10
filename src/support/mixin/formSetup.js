@@ -10,12 +10,12 @@ const formSetup = {
             if (keyForm === keyValidation) {
               for (const input in valueForm) {
                 this.$watch(keyForm.concat('.', input), value => {
-                  this.validations = this.$validate(this.validations, keyForm, input, value)
+                  this.validations = this.$validator.validate(this.validations, keyForm, input, value)
                 })
               }
               this.validations = { 
                 ...this.validations, 
-                ...this.$init(objectValidations, keyForm) 
+                ...this.$validator.init(objectValidations, keyForm) 
               }
             }
           })
@@ -33,7 +33,7 @@ const formSetup = {
             (
               this.validations = {
                 ...this.validations,
-                ...this.$touch(this.validations, form.name, element.name, element.value)
+                ...this.$validator.touch(this.validations, form.name, element.name, element.value)
               }
             ), 
           { once: true })

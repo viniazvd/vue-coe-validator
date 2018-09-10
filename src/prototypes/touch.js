@@ -20,6 +20,6 @@ export default function (validation, form, key, value) {
     }
 
     // forced validation
-    return this.$validate(touched, form, key, value || '')
+    return this.validate(touched, form, key, value || '')
   }
 }
