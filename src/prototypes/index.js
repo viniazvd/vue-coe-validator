@@ -1,15 +1,3 @@
-import init from './init'
-import validate from './validate'
-import touch from './touch'
-// import allTouched from './allTouched'
-// import isValidForm from './isValidForm'
-// import resetForm from './resetForm'
-
-export default {
-  init,
-  validate,
-  touch
-  // allTouched
-  // isValidForm
-  // resetForm
-}
+export { default as init } from './init'
+export { default as touch } from './touch'
+export { default as validate } from './validate'
