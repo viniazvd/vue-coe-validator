@@ -60,7 +60,6 @@ Vue.use(validator)
   </div>
 </template>
 
-// mixins
 import { formSetup } from 'vue-coe-validator'
 
 export default {
