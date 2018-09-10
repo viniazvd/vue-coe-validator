@@ -1,7 +1,3 @@
-import validator from './support/plugin/validator'
-import formSetup from './support/mixin/formSetup'
-
-export default { 
-  validator, 
-  formSetup 
-}
+export { default as validator } from './support/plugin/validator'
+export { default as formSetup } from './support/mixin/formSetup'
+ 
