@@ -1,5 +1,5 @@
 import RULES from '../rules/types'
-import VALIDATIONS from '../rules'
+import * as VALIDATIONS from '../rules'
 
 export default function (validation, form, key, value) {
   if (!form) { console.warn('select a form to validate the data.') }
