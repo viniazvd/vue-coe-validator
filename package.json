@@ -10,11 +10,7 @@
     "input",
     "form"
   ],
-  "files": [
-    "dist/", 
-    "src/support/plugin/validator.js",
-    "src/support/mixin/formSetup.js"
-  ],
+  "files": ["dist/"],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
@@ -25,10 +21,13 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "bili src/index.js --banner --formats es,cjs,umd"
+    "build": "bili src/index.js --formats cjs,es,umd"
   },
   "devDependencies": {
-    "bili": "^3.1.2"
+    "bili": "^3.1.2",
+    "rollup-plugin-vue": "^4.3.2",
+    "vue-template-compiler": "^2.5.17"
   },
-  "main": "src/index.js"
+  "main": "dist/vue-coe-validator.cjs.js",
+  "dependencies": {}
 }
