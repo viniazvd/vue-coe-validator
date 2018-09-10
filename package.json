@@ -1,25 +1,37 @@
 {
-  "name": "vue-validator",
+  "name": "vue-coe-validator",
   "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+  "description": "validator",
+  "readmeFilename": "README.md",
+  "keywords": [
+    "validator",
+    "validators",
+    "validate",
+    "input",
+    "form"
+  ],
+  "files": [
+    "dist/"
+  ],
+  "author": {
+    "name": "Vinicius Azevedo",
+    "email": "viniazvd@gmail.com"
   },
-  "dependencies": {
-    "vue": "^2.5.17"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniazvd/vue-coe-validator"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "bili src/index.js --plugin vue --formats cjs,es,umd"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0",
-    "@vue/cli-plugin-eslint": "^3.0.0",
-    "@vue/cli-service": "^3.0.0",
-    "@vue/eslint-config-standard": "^3.0.1",
+    "bili": "^3.1.2",
+    "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.17"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not ie <= 8"
-  ]
+  "main": "src/index.js",
+  "dependencies": {
+    "vue": "^2.5.17"
+  }
 }
