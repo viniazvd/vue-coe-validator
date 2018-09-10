@@ -30,6 +30,6 @@
     "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.17"
   },
-  "main": "src/index.js",
+  "main": "dist/vue-coe-validator.cjs.js",
   "dependencies": {}
 }
