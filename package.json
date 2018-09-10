@@ -10,9 +10,7 @@
     "input",
     "form"
   ],
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/", "src/support/"],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
