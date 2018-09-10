@@ -10,7 +10,7 @@
     "input",
     "form"
   ],
-  "files": ["dist/vue-coe-validator.cjs.js"],
+  "files": ["dist/", "src/"],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
