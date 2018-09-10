@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "bili src/index.js --plugin vue --formats cjs,es,umd"
+    "build": "bili src/index.js --formats cjs,es,umd"
   },
   "devDependencies": {
     "bili": "^3.1.2",
