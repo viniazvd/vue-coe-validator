@@ -30,7 +30,7 @@ Vue.use(validator)
 ```javascript
 import { formSetup } from 'vue-coe-validator'
 
-mixins: [ formSetup ],
+mixins: [ formSetup ]
 ```
 
 **Use**
