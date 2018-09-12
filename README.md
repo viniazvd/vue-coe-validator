@@ -25,6 +25,14 @@ import { validator } from 'vue-coe-validator'
 
 Vue.use(validator)
 ```
+
+**Include Mixin**
+```vue
+import { formSetup } from 'vue-coe-validator'
+
+mixins: [ formSetup ],
+```
+
 **Use**
 ```vue
 <template>
