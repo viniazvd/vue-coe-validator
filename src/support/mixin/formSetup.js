@@ -1,3 +1,5 @@
+import { mutateMessages } from '../utils'
+
 const formSetup = {
   mounted () {
     const { validation } = this.$options
@@ -6,6 +8,9 @@ const formSetup = {
     this.messages = messages || null
 
     if (validation) {
+      // overrides default messages based on global message options
+      if (this.$validator.messages) mutateMessages(this.messages, this.$validator.messages)
+
       Object
         .entries(this.$data)
         .find(([ keyForm, valueForm ]) => {
