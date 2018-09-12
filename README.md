@@ -19,12 +19,19 @@
 **Include Plugin**
 ```javascript
 import Vue from 'vue'
-import Root from './Root.vue'
 
 import { validator } from 'vue-coe-validator'
 
 Vue.use(validator)
 ```
+
+**Include Mixin**
+```javascript
+import { formSetup } from 'vue-coe-validator'
+
+mixins: [ formSetup ]
+```
+
 **Use**
 ```vue
 <template>
@@ -40,7 +47,6 @@ Vue.use(validator)
 
         <c-input
           name="input2"
-          label="input2"
           :validation="$hasError('input2', 'form1')"
           v-model="form1.input2"
         />
@@ -114,6 +120,15 @@ export default {
 </script>
 ```
 
+## Rules
+
+Name       | required | About
+-----      | -------  | -----
+form       | `true`   | must be named
+input      | `true`   | must be named
+$hasError  | `false`  | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
+messages   | `false`  | `has default messages`
+
 ## Validations
 
 <details>
@@ -157,15 +172,15 @@ export default {
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/pattern.js'><b>pattern</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>msg:</b> Must be a numeric string</li>
-      <li><b>arg:</b> String</li>
+      <li><b>msg:</b>Invalid, try again</li>
+      <li><b>arg:</b>String</li>
     </ul>
   </p>
 </summary>
 
 ```javascript
 {
-  numeric: true,
+  pattern: true,
 }
 ```
 </details>
@@ -177,8 +192,8 @@ export default {
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/numeric.js'><b>numeric</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>msg:</b> Must be a numeric value</li>
-      <li><b>arg:</b> Boolean</li>
+      <li><b>msg:</b>Must be a numeric value</li>
+      <li><b>arg:</b>Boolean</li>
     </ul>
   </p>
 </summary>
@@ -195,8 +210,8 @@ export default {
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/required.js'><b>required</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>msg:</b> Required</li>
-      <li><b>arg:</b> Boolean</li>
+      <li><b>msg:</b>Field is required</li>
+      <li><b>arg:</b>Boolean</li>
     </ul>
   </p>
 </summary>
