@@ -47,7 +47,6 @@ mixins: [ formSetup ]
 
         <c-input
           name="input2"
-          label="input2"
           :validation="$hasError('input2', 'form1')"
           v-model="form1.input2"
         />
