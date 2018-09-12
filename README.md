@@ -19,7 +19,6 @@
 **Include Plugin**
 ```javascript
 import Vue from 'vue'
-import Root from './Root.vue'
 
 import { validator } from 'vue-coe-validator'
 
