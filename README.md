@@ -131,13 +131,14 @@ messages   | `false`  | `has default messages`
 
 ## Customize validation messages globally
 import validator from './support/plugin/validator'
-
+```javascript
 Vue.use(validator, {
   messages: {
     required: 'must be filled',
     alpha: 'must be alpha'
   }
 })
+```
 
 ## Validations
 
