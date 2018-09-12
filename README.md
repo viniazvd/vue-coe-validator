@@ -90,6 +90,25 @@ export default {
         alpha: true
       }
     }
+  },
+
+  messages: {
+    form1: {
+      input1: {
+        required: 'não pode ser vazio!',
+        alphabetic: 'tá errado, é alphabetic!'
+      },
+      input2: {
+        required: 'preenche tudo!',
+        pattern: 'precisa ser e-mail!'
+      }
+    },
+    form2: {
+      input1: {
+        required: 'tá vazio, não pode!',
+        alpha: 'tá errado, é alpha!'
+      }
+    }
   }
 }
 </script>
