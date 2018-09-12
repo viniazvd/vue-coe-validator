@@ -129,6 +129,16 @@ input      | `true`   | must be named
 $hasError  | `false`  | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
 messages   | `false`  | `has default messages`
 
+## Customize validation messages globally
+import validator from './support/plugin/validator'
+
+Vue.use(validator, {
+  messages: {
+    required: 'must be filled',
+    alpha: 'must be alpha'
+  }
+})
+
 ## Validations
 
 <details>
