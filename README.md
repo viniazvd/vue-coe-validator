@@ -114,6 +114,14 @@ export default {
 </script>
 ```
 
+**Rules**
+-form: `must be named`
+-input: `must be named`
+-$hasError: (inputName -`required`, formName -`required only with multiple forms`)
+-formSetup: must be set
+-validation: optional
+-messages: optional (`has default messages`)
+
 ## Validations
 
 <details>
