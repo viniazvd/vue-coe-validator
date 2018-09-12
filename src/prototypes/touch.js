@@ -1,4 +1,4 @@
-export default function (validation, form, key, value) {
+export default function (validation, messages, form, key, value) {
   const { isTouched } = validation[form][key]
 
   // to prevent unnecessary checks
@@ -20,6 +20,6 @@ export default function (validation, form, key, value) {
     }
 
     // forced validation
-    return this.validate(touched, form, key, value || '')
+    return this.validate(touched, messages, form, key, value || '')
   }
 }

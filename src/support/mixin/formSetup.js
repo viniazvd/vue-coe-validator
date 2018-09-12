@@ -1,6 +1,9 @@
 const formSetup = {
   mounted () {
     const { validation } = this.$options
+    const { messages } = this.$options
+
+    this.messages = messages || null
 
     if (validation) {
       Object
@@ -10,12 +13,18 @@ const formSetup = {
             if (keyForm === keyValidation) {
               for (const input in valueForm) {
                 this.$watch(keyForm.concat('.', input), value => {
-                  this.validations = this.$validator.validate(this.validations, keyForm, input, value)
+                  this.validations = this.$validator.validate(
+                    this.validations,
+                    this.messages,
+                    keyForm,
+                    input,
+                    value
+                  )
                 })
               }
-              this.validations = { 
-                ...this.validations, 
-                ...this.$validator.init(objectValidations, keyForm) 
+              this.validations = {
+                ...this.validations,
+                ...this.$validator.init(objectValidations, keyForm)
               }
             }
           })
@@ -33,9 +42,15 @@ const formSetup = {
             (
               this.validations = {
                 ...this.validations,
-                ...this.$validator.touch(this.validations, form.name, element.name, element.value)
+                ...this.$validator.touch(
+                  this.validations,
+                  this.messages,
+                  form.name,
+                  element.name,
+                  element.value
+                )
               }
-            ), 
+            ),
           { once: true })
         })
       })
@@ -46,7 +61,8 @@ const formSetup = {
 
   data () {
     return {
-      validations: {}
+      validations: {},
+      messages: {}
     }
   },
 
@@ -58,7 +74,7 @@ const formSetup = {
         return input.isTouched && !input.isValid && input.errors[0]
       }
 
-      return false   
+      return false
     }
   }
 }

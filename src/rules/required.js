@@ -1,3 +1,3 @@
-export default function (value) {
-  return !value && 'Campo obrigatório'
+export default function (value, msg) {
+  return !value && (msg || 'Campo obrigatório')
 }
