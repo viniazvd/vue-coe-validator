@@ -136,8 +136,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alphabetic.js'><b>alphabetic</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b>Must be a alphabetic value</li>
-      <li><i>type:</i>Boolean</li>
+      <li><b>default message:</b> Must be a alphabetic value</li>
+      <li><i>type:</i> Boolean</li>
     </ul>
   </p>
 </summary>
@@ -154,8 +154,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alpha.js'><b>alpha</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b>Must only contain letters and numbers</li>
-      <li><i>type:</i>Boolean</li>
+      <li><b>default message:</b> Must only contain letters and numbers</li>
+      <li><i>type:</i> Boolean</li>
     </ul>
   </p>
 </summary>
@@ -172,8 +172,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/pattern.js'><b>pattern</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b>Invalid, try again</li>
-      <li><i>type:</i>String</li>
+      <li><b>default message:</b> Invalid, try again</li>
+      <li><i>type:</i> String</li>
     </ul>
   </p>
 </summary>
@@ -192,8 +192,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/numeric.js'><b>numeric</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b>Must be a numeric value</li>
-      <li><i>type:</i>Boolean</li>
+      <li><b>default message:</b> Must be a numeric value</li>
+      <li><i>type:</i> Boolean</li>
     </ul>
   </p>
 </summary>
@@ -210,8 +210,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/required.js'><b>required</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b>Field is required</li>
-      <li><i>type:</i>Boolean</li>
+      <li><b>default message:</b> Field is required</li>
+      <li><i>type:</i> Boolean</li>
     </ul>
   </p>
 </summary>
