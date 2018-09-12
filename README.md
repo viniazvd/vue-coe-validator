@@ -172,15 +172,15 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/pattern.js'><b>pattern</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>msg:</b> Must be a numeric string</li>
-      <li><b>arg:</b> String</li>
+      <li><b>msg:</b>Invalid, try again</li>
+      <li><b>arg:</b>String</li>
     </ul>
   </p>
 </summary>
 
 ```javascript
 {
-  numeric: true,
+  pattern: true,
 }
 ```
 </details>
@@ -192,8 +192,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/numeric.js'><b>numeric</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>msg:</b> Must be a numeric value</li>
-      <li><b>arg:</b> Boolean</li>
+      <li><b>msg:</b>Must be a numeric value</li>
+      <li><b>arg:</b>Boolean</li>
     </ul>
   </p>
 </summary>
@@ -210,8 +210,8 @@ messages   | `false`  | `has default messages`
   <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/required.js'><b>required</b></a>
   <p style='margin: 0; '>
     <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>msg:</b> Required</li>
-      <li><b>arg:</b> Boolean</li>
+      <li><b>msg:</b>Field is required</li>
+      <li><b>arg:</b>Boolean</li>
     </ul>
   </p>
 </summary>
