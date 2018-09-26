@@ -8,7 +8,7 @@ export default function (validation, messages, form, key, value) {
 
   RULES.some(rule => {
     if (validation[form][key][rule]) {
-      const msg = messages && messages[form][key][rule]
+      const msg = messages && messages[form][key] && messages[form][key][rule]
       const error = VALIDATIONS[rule](value, msg, validation, form, key)
       if (error) errors = [ ...errors, error ]
     }

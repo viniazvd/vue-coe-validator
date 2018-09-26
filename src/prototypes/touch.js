@@ -1,5 +1,5 @@
 export default function (validation, messages, form, key, value) {
-  const { isTouched } = validation[form][key]
+  const isTouched = validation[form] && validation[form][key] && validation[form][key].isTouched
 
   // to prevent unnecessary checks
   if (validation && !isTouched) {
