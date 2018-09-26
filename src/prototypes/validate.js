@@ -7,7 +7,7 @@ export default function (validation, messages, form, key, value) {
   let errors = []
 
   RULES.some(rule => {
-    if (validation[form][key][rule]) {
+    if (validation[form] && validation[form][key] && validation[form][key][rule]) {
       const msg = messages && messages[form][key] && messages[form][key][rule]
       const error = VALIDATIONS[rule](value, msg, validation, form, key)
       if (error) errors = [ ...errors, error ]
