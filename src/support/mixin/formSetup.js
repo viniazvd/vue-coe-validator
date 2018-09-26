@@ -9,7 +9,7 @@ const formSetup = {
 
     if (validation) {
       // overrides default messages based on global message options
-      if (this.$validator.messages) mutateMessages(this.messages, this.$validator.messages)
+      if (this.$validator.messages && this.messages && this.messages.length) mutateMessages(this.messages, this.$validator.messages)
 
       Object
         .entries(this.$data)
@@ -39,24 +39,27 @@ const formSetup = {
     }
 
     // dynamically records listeners to activate touch inputs
-    const forms = this.$el.querySelectorAll('form[name]')
+    const forms = this.$el.querySelectorAll('form[id]')
     if (forms.length) {
       forms.forEach(form => {
         Array.from(form.elements).forEach((element, index) => {
-          form[index].addEventListener('blur', () =>
-            (
-              this.validations = {
-                ...this.validations,
-                ...this.$validator.touch(
-                  this.validations,
-                  this.messages,
-                  form.name,
-                  element.name,
-                  element.value
-                )
-              }
-            ),
-          { once: true })
+          // register events only for those who have validation
+          if (this.validations[form.id][form[index].name]) {
+            form[index].addEventListener('blur', () =>
+              (
+                this.validations = {
+                  ...this.validations,
+                  ...this.$validator.touch(
+                    this.validations,
+                    this.messages,
+                    form.id,
+                    element.name,
+                    element.value
+                  )
+                }
+              ),
+            { once: true })
+          }
         })
       })
     } else {
@@ -76,7 +79,7 @@ const formSetup = {
       if (this.validations && Object.keys(this.validations).length) {
         const input = this.validations[form][key]
 
-        return input.isTouched && !input.isValid && input.errors[0]
+        return input && input.isTouched && !input.isValid && input.errors[0]
       }
 
       return false
