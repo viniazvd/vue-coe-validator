@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  ✨ <a href="#">Example</a>✨
+  ✨ <a href="https://codesandbox.io/s/github/viniazvd/vue-coe-validator-example">Example</a>✨
 </p>
 
 **Install**
@@ -38,7 +38,7 @@ mixins: [ formSetup ]
   <div id="app">
     <section>
       <h3>form1</h3>
-      <form name="form1">
+      <form id="form1">
         <c-input
           name="input1"
           :validation="$hasError('input1', 'form1')"
@@ -55,7 +55,7 @@ mixins: [ formSetup ]
 
     <section>
       <h3>form2</h3>
-      <form name="form2">
+      <form id="form2">
         <c-input
           name="input1"
           :validation="$hasError('input1', 'form2')"
