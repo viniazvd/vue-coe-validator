@@ -38,7 +38,6 @@ const formSetup = {
       console.warn('follow the instructions in the documentation to correctly register the data')
     }
 
-    // dynamically records listeners to activate touch inputs
     this.$validator.setListenersTouch.call(this, this.validations, this.messages)
   },
 
@@ -78,9 +77,21 @@ const formSetup = {
       }
 
       this.validations = initialForm
-      this.$validator.setListenersTouch.call(this, this.validations, this.messages)
+      // this.$validator.unsetListenersTouch.call(this, this.validations, this.messages)
+    },
+
+    $isValidForm (form) {
+      const isValid = Object
+        .entries(this.validations[form])
+        .every(([_, { isValid }]) => isValid)
+
+      return isValid
     }
   }
+
+  // beforeDestroy () {
+  //   this.$validator.unsetListenersTouch.call(this, this.validations, this.messages)
+  // }
 }
 
 export default formSetup
