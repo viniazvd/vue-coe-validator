@@ -1,4 +1,4 @@
-import { mutateMessages } from '../utils'
+import { setMessages, setFormValidations, setWatcher } from '../utils'
 
 const formSetup = {
   mounted () {
@@ -9,31 +9,19 @@ const formSetup = {
 
     if (validation) {
       // overrides default messages based on global message options
-      if (this.$validator.messages && this.messages && this.messages.length) mutateMessages(this.messages, this.$validator.messages)
+      if (this.$validator.messages && this.messages && this.messages.length) setMessages(this.messages, this.$validator.messages)
 
-      Object
-        .entries(this.$data)
-        .find(([ keyForm, valueForm ]) => {
-          Object.entries(validation).find(([keyValidation, objectValidations]) => {
-            if (keyForm === keyValidation) {
-              for (const input in valueForm) {
-                this.$watch(keyForm.concat('.', input), value => {
-                  this.validations = this.$validator.validate(
-                    this.validations,
-                    this.messages,
-                    keyForm,
-                    input,
-                    value
-                  )
-                })
-              }
-              this.validations = {
-                ...this.validations,
-                ...this.$validator.init(objectValidations, keyForm)
-              }
-            }
-          })
+      const { validations = {}, messages = {}, ...data } = this.$data
+
+      Object.entries(data).forEach(([dataKey, dataValue]) => {
+        Object.keys(validation).forEach(validationKey => {
+          if (validationKey === dataKey) {
+            for (const input in dataValue) setWatcher.call(this, dataKey, input)
+
+            this.validations = setFormValidations.call(this, validation[dataKey], dataKey)
+          }
         })
+      })
     } else {
       console.warn('follow the instructions in the documentation to correctly register the data')
     }
