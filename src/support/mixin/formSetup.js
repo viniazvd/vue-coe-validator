@@ -18,7 +18,7 @@ const formSetup = {
           if (validationKey === dataKey) {
             for (const input in dataValue) setWatcher.call(this, dataKey, input)
 
-            this.validations = setFormValidations.call(this, dataValue, dataKey)
+            this.validations = setFormValidations.call(this, dataValue, dataKey, validation[dataKey])
           }
         })
       })

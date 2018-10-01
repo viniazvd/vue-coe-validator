@@ -16,9 +16,9 @@ export function setWatcher (dataKey, input) {
   })
 }
 
-export function setFormValidations (data, keyForm) {
+export function setFormValidations (data, keyForm, validation) {
   return {
     ...this.validations,
-    ...this.$validator.init(data, keyForm)
+    ...this.$validator.init(data, keyForm, validation)
   }
 }
