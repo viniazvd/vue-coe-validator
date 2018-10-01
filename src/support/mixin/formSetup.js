@@ -18,7 +18,7 @@ const formSetup = {
           if (validationKey === dataKey) {
             for (const input in dataValue) setWatcher.call(this, dataKey, input)
 
-            this.validations = setFormValidations.call(this, validation[dataKey], dataKey)
+            this.validations = setFormValidations.call(this, dataValue, dataKey)
           }
         })
       })
@@ -40,6 +40,8 @@ const formSetup = {
     $hasError (key, form) {
       if (this.validations && Object.keys(this.validations).length) {
         const input = this.validations[form][key]
+
+        // console.log('input', input)
 
         return input && input.isTouched && !input.isValid && input.errors[0]
       }
