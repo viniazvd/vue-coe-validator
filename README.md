@@ -122,12 +122,13 @@ export default {
 
 ## Rules
 
-Name       | required | About
------      | -------  | -----
-form       | `true`   | must be named
-input      | `true`   | must be named
-$hasError  | `false`  | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
-messages   | `false`  | `has default messages`
+Name              | required | About
+-----             | -------  | -----
+form              | `true`   | must be named
+input             | `true`   | must be named
+$hasError         | `false`  | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
+$resetValidations | `false`  | params: (formName(String) - `optional`. Obs: no parameter resets inputs of all forms
+messages          | `false`  | `has default messages`
 
 ## Customize validation messages globally
 ```javascript
