@@ -23,12 +23,12 @@ function setFormValidations (data, keyForm, validation) {
   }
 }
 
-export function setValidations (validation) {
-  const { validations = {}, messages = {}, ...data } = this.$data
+export function setValidations (validation, form) {
+  let { validations = {}, messages = {}, ...data } = this.$data
 
   Object.entries(data).forEach(([dataKey, dataValue]) => {
     Object.keys(validation).forEach(validationKey => {
-      if (validationKey === dataKey) {
+      if ((form && form === dataKey) || validationKey === dataKey) {
         for (const input in dataValue) setWatcher.call(this, dataKey, input)
 
         this.validations = setFormValidations.call(this, dataValue, dataKey, validation[dataKey])
