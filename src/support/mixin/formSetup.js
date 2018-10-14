@@ -1,4 +1,4 @@
-import { setMessages, setFormValidations, setWatcher } from '../utils'
+import { setMessages, setValidations } from '../services'
 
 const formSetup = {
   mounted () {
@@ -11,22 +11,10 @@ const formSetup = {
       // overrides default messages based on global message options
       if (this.$validator.messages && this.messages && this.messages.length) setMessages(this.messages, this.$validator.messages)
 
-      const { validations = {}, messages = {}, ...data } = this.$data
-
-      Object.entries(data).forEach(([dataKey, dataValue]) => {
-        Object.keys(validation).forEach(validationKey => {
-          if (validationKey === dataKey) {
-            for (const input in dataValue) setWatcher.call(this, dataKey, input)
-
-            this.validations = setFormValidations.call(this, dataValue, dataKey, validation[dataKey])
-          }
-        })
-      })
+      setValidations.call(this, validation)
     } else {
       console.warn('follow the instructions in the documentation to correctly register the data')
     }
-
-    this.$validator.setListenersTouch.call(this, this.validations, this.messages)
   },
 
   data () {
@@ -37,11 +25,16 @@ const formSetup = {
   },
 
   methods: {
+    $handlerBlur (form, element) {
+      this.validations = {
+        ...this.validations,
+        ...this.$validator.touch(this.validations, this.messages, form, element.name, element.value)
+      }
+    },
+
     $hasError (key, form) {
       if (this.validations && Object.keys(this.validations).length) {
         const input = this.validations[form][key]
-
-        // console.log('input', input)
 
         return input && input.isTouched && !input.isValid && input.errors[0]
       }
@@ -49,25 +42,11 @@ const formSetup = {
       return false
     },
 
-    $resetValidations (form) {
-      const defaultState = {
-        isTouched: false,
-        isDirty: false,
-        isFilled: false,
-        isValid: false,
-        errors: []
-      }
+    $resetValidations () {
+      const { validation } = this.$options
 
-      const initialForm = {
-        [form]: Object.entries(this.validations[form]).reduce((form, [key]) => {
-          form[key] = { ...defaultState }
-
-          return form
-        }, {})
-      }
-
-      this.validations = initialForm
-      // this.$validator.unsetListenersTouch.call(this, this.validations, this.messages)
+      // overwrites the initial validations
+      setValidations.call(this, validation)
     },
 
     $isValidForm (form) {
@@ -78,10 +57,6 @@ const formSetup = {
       return isValid
     }
   }
-
-  // beforeDestroy () {
-  //   this.$validator.unsetListenersTouch.call(this, this.validations, this.messages)
-  // }
 }
 
 export default formSetup
