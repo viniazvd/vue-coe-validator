@@ -42,11 +42,11 @@ const formSetup = {
       return false
     },
 
-    $resetValidations () {
+    $resetValidations (form) {
       const { validation } = this.$options
 
       // overwrites the initial validations
-      setValidations.call(this, validation)
+      setValidations.call(this, validation, form)
     },
 
     $isValidForm (form) {
