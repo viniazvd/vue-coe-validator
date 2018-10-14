@@ -8,7 +8,7 @@ export default function (data, form, validation) {
   }
 
   const initialForm = {
-    [form]: Object.entries(data).reduce((form, [key, value], index) => {
+    [form]: Object.entries(data).reduce((form, [key, value]) => {
       const filled = { isFilled: !!value }
       const validations = validation[key]
 
