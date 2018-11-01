@@ -158,8 +158,7 @@ Vue.use(validator, {
   messages: {
     required: 'must be filled',
     alpha: 'must be alpha'
-  },
-  validateOnBlur: true
+  }
 })
 ```
 
@@ -167,15 +166,10 @@ Vue.use(validator, {
 ```javascript
 import validator from './support/plugin/validator'
 
-Vue.use(validator, {
-  messages: {
-    required: 'must be filled',
-    alpha: 'must be alpha'
-  },
-  validateOnBlur: true // default is false
+Vue.use(validator, { 
+  validateOnBlur: true // default is false 
 })
 ```
-
 
 ## Validations
 
