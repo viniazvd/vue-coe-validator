@@ -14,7 +14,7 @@
 
 **Install**
 
-`yarn add vue-coe-validator@latest`
+`yarn add vue-coe-validator`
 
 **Include Plugin**
 ```javascript
