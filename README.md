@@ -120,7 +120,7 @@ export default {
 </script>
 ```
 
-**you can set the validation object programmatically too**
+**You can set the validation object programmatically too**
 ```vue
 mounted () {
   const validations = {
