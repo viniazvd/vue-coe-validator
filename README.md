@@ -25,7 +25,7 @@ import { validator } from 'vue-coe-validator'
 Vue.use(validator)
 ```
 
-**Include Mixin**
+**Include Mixin (required only on components that need validation)**
 ```javascript
 import { formSetup } from 'vue-coe-validator'
 
