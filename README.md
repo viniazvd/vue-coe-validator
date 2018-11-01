@@ -125,34 +125,13 @@ export default {
 mounted () {
   const validations = {
     form1: {
-      name: {
-        required: true
-      },
+      name: { required: true },
       email: {
         required: true,
         pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
       },
-      registry_code: {
-        required: true
-      },
-      phone: {
-        required: true
-      },
-      zipcode: {
-        required: true
-      },
-      number: {
-        required: true
-      },
-      neighborhood: {
-        required: true
-      },
-      city: {
-        required: true
-      },
-      state: {
-        required: true
-      }
+      registry_code: { required: true },
+      ...
     }
   }
 
