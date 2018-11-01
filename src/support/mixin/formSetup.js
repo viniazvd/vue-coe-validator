@@ -2,8 +2,7 @@ import { setMessages, setValidations } from '../services'
 
 const formSetup = {
   mounted () {
-    const { validation } = this.$options
-    const { messages } = this.$options
+    const { validation, messages } = this.$options
 
     this.messages = messages || null
 
