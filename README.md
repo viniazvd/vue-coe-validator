@@ -179,9 +179,24 @@ Vue.use(validator, {
   messages: {
     required: 'must be filled',
     alpha: 'must be alpha'
-  }
+  },
+  validateOnBlur: true
 })
 ```
+
+## Set validate on blur
+```javascript
+import validator from './support/plugin/validator'
+
+Vue.use(validator, {
+  messages: {
+    required: 'must be filled',
+    alpha: 'must be alpha'
+  },
+  validateOnBlur: true // default is false
+})
+```
+
 
 ## Validations
 
