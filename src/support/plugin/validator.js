@@ -1,4 +1,5 @@
 import * as prototypes from '../../prototypes'
+import * as services from '../services'
 
 const messages = options => (options && options.messages && { messages: options.messages }) || {}
 
@@ -9,6 +10,7 @@ export default {
         return Object.assign(
           {},
           prototypes,
+          services,
           messages(options)
         )
       }
