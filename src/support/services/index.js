@@ -36,5 +36,5 @@ export function setValidations (validation, form) {
     })
   })
 
-  this.$validator.setListenersTouch.call(this, this.validations, this.messages)
+  this.$validator.validateOnBlur && this.$validator.setListenersTouch.call(this, this.validations, this.messages)
 }
