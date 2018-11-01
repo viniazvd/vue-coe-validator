@@ -121,7 +121,7 @@ export default {
 ```
 
 **You can set the validation object programmatically too**
-```vue
+```js
 mounted () {
   const validations = {
     form1: {
