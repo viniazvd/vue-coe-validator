@@ -32,7 +32,7 @@ import { formSetup } from 'vue-coe-validator'
 mixins: [ formSetup ]
 ```
 
-**Use**
+**How to use**
 ```vue
 <template>
   <div id="app">
@@ -119,6 +119,47 @@ export default {
 }
 </script>
 ```
+
+**you can set the validation object programmatically too**
+```vue
+mounted () {
+  const validations = {
+    form1: {
+      name: {
+        required: true
+      },
+      email: {
+        required: true,
+        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
+      },
+      registry_code: {
+        required: true
+      },
+      phone: {
+        required: true
+      },
+      zipcode: {
+        required: true
+      },
+      number: {
+        required: true
+      },
+      neighborhood: {
+        required: true
+      },
+      city: {
+        required: true
+      },
+      state: {
+        required: true
+      }
+    }
+  }
+
+  this.$validator.setValidations.call(this, validations, 'form1')
+}
+```
+
 
 ## Rules
 
