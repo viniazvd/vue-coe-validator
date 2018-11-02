@@ -120,7 +120,18 @@ export default {
 </script>
 ```
 
-**You can set the validation object programmatically too**
+**You can also define validations with directives**
+```vue
+<c-input
+  label="Razão social"
+  name="name"
+  :validation="$hasError('name', 'form1')"
+  v-validator="{ required: true }"
+  v-model="form1.name"
+/>
+```
+
+**Or use the setValidations function by passing the validation object and form name**
 ```js
 mounted () {
   const validations = {
