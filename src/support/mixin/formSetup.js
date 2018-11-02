@@ -1,7 +1,7 @@
 import { setMessages, setValidations } from '../services'
 
 const formSetup = {
-  mounted () {
+  created () {
     const { validation, messages } = this.$options
 
     this.messages = messages || null
@@ -11,8 +11,44 @@ const formSetup = {
       if (this.$validator.messages && this.messages && this.messages.length) setMessages(this.messages, this.$validator.messages)
 
       setValidations.call(this, validation)
-    } else {
-      console.warn('follow the instructions in the documentation to correctly register the data')
+    }
+    //  else {
+    // console.warn('follow the instructions in the documentation to correctly register the data')
+    // }
+  },
+
+  directives: {
+    validator: {
+      bind (el, binding, vnode) {
+        const [ form ] = vnode.data.model.expression.split('.')
+
+        // if the form property does not exist in validations, set.
+        if (!vnode.context.validations[form]) {
+          vnode.context.$set.call(vnode, vnode.context.validations, form, {})
+        }
+      },
+
+      inserted (el, { value: rules }, vnode) {
+        const [ form, key ] = vnode.data.model.expression.split('.')
+        const data = vnode.context[form]
+
+        // nextTick? because data was not built yet.
+        vnode.context.$nextTick(() => {
+          const validations = {
+            ...vnode.context.validations,
+            [form]: {
+              ...vnode.context.validations[form],
+              [key]: {
+                ...vnode.context.validations[form][key],
+                ...rules
+              }
+            }
+          }
+
+          vnode.context.validations = vnode.context.$validator.init(data, null, validations)
+          vnode.context.$validator.setValidations.call(vnode.context, vnode.context.validations)
+        })
+      }
     }
   },
 
@@ -41,11 +77,11 @@ const formSetup = {
       return false
     },
 
-    $resetValidations (form) {
+    $resetValidations () {
       const { validation } = this.$options
 
       // overwrites the initial validations
-      setValidations.call(this, validation, form)
+      setValidations.call(this, validation)
     },
 
     $isValidForm (form) {
