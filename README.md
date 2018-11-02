@@ -14,7 +14,7 @@
 
 **Install**
 
-`yarn add vue-coe-validator@latest`
+`yarn add vue-coe-validator`
 
 **Include Plugin**
 ```javascript
@@ -25,7 +25,7 @@ import { validator } from 'vue-coe-validator'
 Vue.use(validator)
 ```
 
-**Include Mixin**
+**Include Mixin (required only on components that need validation)**
 ```javascript
 import { formSetup } from 'vue-coe-validator'
 
@@ -121,38 +121,17 @@ export default {
 ```
 
 **You can set the validation object programmatically too**
-```vue
+```js
 mounted () {
   const validations = {
     form1: {
-      name: {
-        required: true
-      },
+      name: { required: true },
       email: {
         required: true,
         pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
       },
-      registry_code: {
-        required: true
-      },
-      phone: {
-        required: true
-      },
-      zipcode: {
-        required: true
-      },
-      number: {
-        required: true
-      },
-      neighborhood: {
-        required: true
-      },
-      city: {
-        required: true
-      },
-      state: {
-        required: true
-      }
+      registry_code: { required: true },
+      ...
     }
   }
 
@@ -180,6 +159,15 @@ Vue.use(validator, {
     required: 'must be filled',
     alpha: 'must be alpha'
   }
+})
+```
+
+## Set validate on blur
+```javascript
+import validator from './support/plugin/validator'
+
+Vue.use(validator, { 
+  validateOnBlur: true // default is false 
 })
 ```
 
