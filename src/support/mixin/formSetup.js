@@ -1,4 +1,5 @@
 import { setMessages, setValidations } from '../services'
+import validator from '../directives/validator'
 
 const formSetup = {
   created () {
@@ -13,44 +14,11 @@ const formSetup = {
       setValidations.call(this, validation)
     }
     //  else {
-    // console.warn('follow the instructions in the documentation to correctly register the data')
+    //    console.warn('follow the instructions in the documentation to correctly register the data')
     // }
   },
 
-  directives: {
-    validator: {
-      bind (el, binding, vnode) {
-        const [ form ] = vnode.data.model.expression.split('.')
-
-        // if the form property does not exist in validations, set.
-        if (!vnode.context.validations[form]) {
-          vnode.context.$set.call(vnode, vnode.context.validations, form, {})
-        }
-      },
-
-      inserted (el, { value: rules }, vnode) {
-        const [ form, key ] = vnode.data.model.expression.split('.')
-        const data = vnode.context[form]
-
-        // nextTick? because data was not built yet.
-        vnode.context.$nextTick(() => {
-          const validations = {
-            ...vnode.context.validations,
-            [form]: {
-              ...vnode.context.validations[form],
-              [key]: {
-                ...vnode.context.validations[form][key],
-                ...rules
-              }
-            }
-          }
-
-          vnode.context.validations = vnode.context.$validator.init(data, null, validations)
-          vnode.context.$validator.setValidations.call(vnode.context, vnode.context.validations)
-        })
-      }
-    }
-  },
+  directives: validator,
 
   data () {
     return {
@@ -69,6 +37,9 @@ const formSetup = {
 
     $hasError (key, form) {
       if (this.validations && Object.keys(this.validations).length) {
+        // in a single-form scenario, the scope is unique, and you do not have to explicitly name the form
+        if (!form) form = Object.keys(this.validations)[0]
+
         const input = this.validations[form][key]
 
         return input && input.isTouched && !input.isValid && input.errors[0]
