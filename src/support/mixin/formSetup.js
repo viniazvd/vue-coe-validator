@@ -12,10 +12,14 @@ const formSetup = {
       if (this.$validator.messages && this.messages && this.messages.length) setMessages(this.messages, this.$validator.messages)
 
       setValidations.call(this, validation)
+      this.$validator.validateOnBlur && this.$validator.setListenersTouch.call(this, this.validations)
+
+      // set the component context values
+      this.$validator.context = {
+        ...this.$validator.context,
+        [this._uid]: this
+      }
     }
-    //  else {
-    //    console.warn('follow the instructions in the documentation to correctly register the data')
-    // }
   },
 
   directives: validator,
@@ -28,6 +32,7 @@ const formSetup = {
   },
 
   methods: {
+    // helper method to prototype
     $handlerBlur (form, element) {
       this.validations = {
         ...this.validations,
@@ -46,13 +51,6 @@ const formSetup = {
       }
 
       return false
-    },
-
-    $resetValidations () {
-      const { validation } = this.$options
-
-      // overwrites the initial validations
-      setValidations.call(this, validation)
     },
 
     $isValidForm (form) {
