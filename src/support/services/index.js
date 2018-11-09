@@ -1,40 +1,13 @@
-export const setMessages = (source, newMessages) => {
-  for (let form of Object.values(source)) {
-    for (let input of Object.values(form)) {
-      for (let messageKey of Object.keys(input)) {
-        if (newMessages[messageKey]) {
-          input[messageKey] = newMessages[messageKey]
-        }
-      }
-    }
-  }
-}
+export function getSnapshots () {
+  const validation = this.$options.validation
 
-function setWatcher (dataKey, input) {
-  this.$watch(dataKey.concat('.', input), value => {
-    this.validations = this.$validator.validate(this.validations, this.messages, dataKey, input, value)
-  })
-}
-
-function setFormValidations (data, keyForm, validation) {
-  return {
-    ...this.validations,
-    ...this.$validator.init(data, keyForm, validation)
-  }
-}
-
-export function setValidations (validation, form) {
   /* eslint-disable */
   const { validations = {}, messages = {}, ...data } = this.$data
   /* eslint-enable */
 
-  Object.entries(data).forEach(([dataKey, dataValue]) => {
-    Object.keys(validation).forEach(validationKey => {
-      if ((form && form === dataKey) || validationKey === dataKey) {
-        for (const input in dataValue) setWatcher.call(this, dataKey, input)
+  return Object.entries(data).reduce((acc, [dataKey, dataValue]) => {
+    Object.keys(validation).forEach(validationKey => (validationKey === dataKey) && (acc[dataKey] = dataValue))
 
-        this.validations = setFormValidations.call(this, dataValue, dataKey, validation[dataKey])
-      }
-    })
-  })
+    return acc
+  }, {})
 }
