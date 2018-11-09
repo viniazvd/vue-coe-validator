@@ -4,33 +4,42 @@ function watchValidate (dataKey, input) {
   })
 }
 
-function watchDynamicFields (form) {
-  this.$watch(form, (fields, oldFields) => {
-    if (Object.keys(fields).length !== Object.keys(oldFields).length) setValidations.call(this)
-  })
-}
-
 function setValidations (validation, form) {
-  if (!validation) validation = this.$options.validation
+  const instance = this || this.$validator
+  const componentID = Object.keys(instance.context.components)[Object.keys(instance.context.components).length - 1]
+  const vm = instance.context.components[componentID]
+
+  if (!validation) {
+    validation = vm.$options.validation
+  } else {
+    validation = {
+      ...vm.$options.validation,
+      [form]: {
+        ...vm.$options.validation[form],
+        ...validation
+      }
+    }
+  }
 
   /* eslint-disable */
-  const { validations = {}, messages = {}, ...data } = this.$data
+  const { validations = {}, messages = {}, ...data } = vm.$data
   /* eslint-enable */
 
   Object.entries(data).forEach(([dataKey, dataValue]) => {
     Object.keys(validation).forEach(validationKey => {
       if ((form && form === dataKey) || validationKey === dataKey) {
-        // if new fields are added dynamically to the form, set the validations again
-        watchDynamicFields.call(this, dataKey)
-
         // set validator for each input
-        for (const input in dataValue) watchValidate.call(this, dataKey, input)
+        for (const input in dataValue) watchValidate.call(vm, dataKey, input)
 
-        // validation[dataKey] = when the validation is created automatically
-        // validation = quando a validação é criada programaticamente
-        this.validations = {
-          ...this.validations,
-          ...this.$validator.init(dataValue, dataKey, (validation[dataKey] || validation))
+        vm.validations = {
+          ...vm.validations,
+          ...vm.$validator.init(
+            dataValue,
+            dataKey, (
+              validation[dataKey] || // when the validation is created automatically
+              validation // quando a validação é criada programaticamente
+            )
+          )
         }
       }
     })
