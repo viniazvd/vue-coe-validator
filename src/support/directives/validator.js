@@ -13,22 +13,18 @@ export default {
       const [ form, key ] = vnode.data.model.expression.split('.')
       const data = vnode.context[form]
 
-      // nextTick? because data was not built yet.
-      vnode.context.$nextTick(() => {
-        const validations = {
-          ...vnode.context.validations,
-          [form]: {
-            ...vnode.context.validations[form],
-            [key]: {
-              ...vnode.context.validations[form][key],
-              ...rules
-            }
+      const validations = {
+        ...vnode.context.validations,
+        [form]: {
+          ...vnode.context.validations[form],
+          [key]: {
+            ...vnode.context.validations[form][key],
+            ...rules
           }
         }
+      }
 
-        vnode.context.validations = vnode.context.$validator.init(data, null, validations)
-        vnode.context.$validator.setValidations.call(vnode.context, vnode.context.validations)
-      })
+      vnode.context.validations = vnode.context.$validator.init(data, null, validations)
     }
   }
 }
