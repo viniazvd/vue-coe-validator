@@ -11,9 +11,10 @@ export default function (data, form, validation) {
 
   const createForm = formName => Object.entries(data).reduce((initialForm, [key, value]) => {
     const filled = { isFilled: !!value }
+    const dirted = { isDirty: !!value }
     const validations = (validation && validation[key]) || (validation && validation[formName] && validation[formName][key])
 
-    initialForm[key] = { ...defaultState, ...filled, ...validations }
+    initialForm[key] = { ...defaultState, ...dirted, ...filled, ...validations }
 
     return initialForm
   }, {})
