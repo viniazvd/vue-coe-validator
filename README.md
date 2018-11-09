@@ -142,13 +142,11 @@ methods: {
 
     // create validation for new field
     const validations = {
-      form1: {
-        coe: { required: true }
-      }
+      coe: { required: true }
     }
 
     // set validation for new field
-    this.$validator.setValidations.call(this, validations, 'form1')
+    this.$validator.setValidations(validations, 'form1')
   }
 }
 ```
