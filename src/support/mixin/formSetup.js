@@ -26,7 +26,7 @@ const formSetup = {
       }
 
       this.$validator.setValidations()
-      this.$validator.validateOnBlur && this.$validator.setListenersTouch.call(this, this.validations)
+      this.$validator.validateOnBlur && this.$validator.setListenersTouch()
     }
   },
 
