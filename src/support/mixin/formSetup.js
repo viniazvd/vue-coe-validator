@@ -1,4 +1,4 @@
-import { setMessages, setValidations } from '../services'
+import { getSnapshots } from '../services'
 import validator from '../directives/validator'
 
 const formSetup = {
@@ -8,19 +8,25 @@ const formSetup = {
     this.messages = messages || null
 
     if (validation) {
-      // overrides default messages based on global message options
-      if (this.$validator.messages && this.messages && this.messages.length) {
-        this.$validator.setMessages(this.messages, this.$validator.messages)
-      }
-
-      this.$validator.setValidations.call(this)
-      this.$validator.validateOnBlur && this.$validator.setListenersTouch.call(this, this.validations)
-
       // set the component context values
       this.$validator.context.components = {
         ...this.$validator.context.components,
         [this._uid]: this
       }
+
+      // set snapshot of the initial form
+      this.$validator.snapshots.components = {
+        ...this.$validator.snapshots.components,
+        [this._uid]: getSnapshots.call(this)
+      }
+
+      // overrides default messages based on global message options
+      if (this.$validator.messages && this.messages && this.messages.length) {
+        this.$validator.setMessages(this.messages, this.$validator.messages)
+      }
+
+      this.$validator.setValidations()
+      this.$validator.validateOnBlur && this.$validator.setListenersTouch.call(this, this.validations)
     }
   },
 
