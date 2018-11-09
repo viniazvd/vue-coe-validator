@@ -5,7 +5,7 @@ export default function (formToReset) {
   const vm = this.context.components[componentID]
 
   if (formToReset && !Object.keys(vm.validations).includes(formToReset)) {
-    console.warn('it was not possible to reset the validations of a form that does not exist.')
+    console.warn('it was not possible to reset the $ of a form that does not exist.')
     return
   }
   if (!formToReset) formToReset = Object.keys(vm.validations)[0]
@@ -34,5 +34,5 @@ export default function (formToReset) {
       return acc
     }, {})
 
-  vm.$validator.validateOnBlur && vm.$validator.setListenersTouch.call(vm, vm.validations)
+  vm.$validator.validateOnBlur && vm.$validator.setListenersTouch()
 }

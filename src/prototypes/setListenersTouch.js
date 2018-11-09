@@ -1,14 +1,17 @@
-export default function (validations) {
+export default function () {
+  const componentID = Object.keys(this.context.components)[Object.keys(this.context.components).length - 1]
+  const vm = this.context.components[componentID]
+
   // dynamically records listeners to activate touch inputs
-  this.$nextTick(() => {
-    const forms = this.$el.querySelectorAll('form[id]')
+  vm.$nextTick(() => {
+    const forms = vm.$el.querySelectorAll('form[id]')
 
     if (forms.length) {
       forms.forEach(form => {
         Array.from(form.elements).forEach((element, index) => {
           // register events only for those who have validation
-          if (validations[form.id][form[index].name]) {
-            form[index].addEventListener('blur', () => this.$handlerBlur(form.id, element), { once: true })
+          if (vm.validations[form.id][form[index].name]) {
+            form[index].addEventListener('blur', () => vm.$handlerBlur(form.id, element), { once: true })
           }
         })
       })
