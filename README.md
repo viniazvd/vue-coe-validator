@@ -132,20 +132,24 @@ export default {
 
 **Or use the setValidations function by passing the validation object and form name**
 ```js
-mounted () {
-  const validations = {
-    form1: {
-      name: { required: true },
-      email: {
-        required: true,
-        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
-      },
-      registry_code: { required: true },
-      ...
+methods: {
+  addField () {
+    // add new field
+    this.form1 = {
+      ...this.form1,
+      coe: 'mané'
     }
-  }
 
-  this.$validator.setValidations.call(this, validations, 'form1')
+    // create validation for new field
+    const validations = {
+      form1: {
+        coe: { required: true }
+      }
+    }
+
+    // set validation for new field
+    this.$validator.setValidations.call(this, validations, 'form1')
+  }
 }
 ```
 
