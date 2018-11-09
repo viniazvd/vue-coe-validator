@@ -158,11 +158,22 @@ Directive and setValidations only set the validations.
 
 Name              | required | About
 -----             | -------  | -----
-form              | `true`   | must be named
-input             | `true`   | must be named
-$hasError         | `false`  | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
-$resetValidations | `false`  | params: (formName(String) - `optional`. Obs: no parameter resets inputs of all forms
-messages          | `false`  | `has default messages`
+form              | `true`   | set an id for the scope of the form
+input             | `true`   | name the input with the tag name and its respective form value
+
+## Mixin methods
+
+Name           | About
+-----------    |
+$hasError      | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
+$isValidForm   | i'm lazy and you already know what this does
+
+## Validator methods
+
+Name           | About
+setMessages    | wip              
+setValidations | wip
+reset          | params: (formName(String) - `optional`. Obs: no parameter resets inputs of all forms
 
 ## Customize validation messages globally
 ```javascript
