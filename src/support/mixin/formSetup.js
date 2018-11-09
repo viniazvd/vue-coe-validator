@@ -1,4 +1,4 @@
-import { getSnapshots } from '../services'
+import { setContext, setSnapshot } from '../services'
 import validator from '../directives/validator'
 
 const formSetup = {
@@ -9,16 +9,10 @@ const formSetup = {
 
     if (validation) {
       // set the component context values
-      this.$validator.context.components = {
-        ...this.$validator.context.components,
-        [this._uid]: this
-      }
+      setContext.call(this)
 
       // set snapshot of the initial form
-      this.$validator.snapshots.components = {
-        ...this.$validator.snapshots.components,
-        [this._uid]: getSnapshots.call(this)
-      }
+      setSnapshot.call(this)
 
       // overrides default messages based on global message options
       if (this.$validator.messages && this.messages && this.messages.length) {
