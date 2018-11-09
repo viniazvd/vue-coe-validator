@@ -11,3 +11,17 @@ export function getSnapshots () {
     return acc
   }, {})
 }
+
+export function setContext () {
+  this.$validator.context.components = {
+    ...this.$validator.context.components,
+    [this._uid]: this
+  }
+}
+
+export function setSnapshot () {
+  this.$validator.snapshots.components = {
+    ...this.$validator.snapshots.components,
+    [this._uid]: getSnapshots.call(this)
+  }
+}
