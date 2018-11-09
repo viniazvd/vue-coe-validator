@@ -1,3 +1,5 @@
+import { setListenersTouch } from '../support/services'
+
 export default function (formToReset) {
   const defaultStates = ['isDirty', 'isFilled', 'isTouched', 'isValid']
 
@@ -34,5 +36,5 @@ export default function (formToReset) {
       return acc
     }, {})
 
-  vm.$validator.validateOnBlur && vm.$validator.setListenersTouch()
+  vm.$validator.validateOnBlur && setListenersTouch.call(vm)
 }
