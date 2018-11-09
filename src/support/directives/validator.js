@@ -1,30 +1,32 @@
 export default {
   validator: {
     bind (el, binding, vnode) {
+      const vm = vnode.context
       const [ form ] = vnode.data.model.expression.split('.')
 
       // if the form property does not exist in validations, set.
-      if (!vnode.context.validations[form]) {
-        vnode.context.$set.call(vnode, vnode.context.validations, form, {})
+      if (!vm.validations[form]) {
+        vm.$set.call(vnode, vm.validations, form, {})
       }
     },
 
     inserted (el, { value: rules }, vnode) {
+      const vm = vnode.context
       const [ form, key ] = vnode.data.model.expression.split('.')
-      const data = vnode.context[form]
+      const data = vm[form]
 
       const validations = {
-        ...vnode.context.validations,
+        ...vm.validations,
         [form]: {
-          ...vnode.context.validations[form],
+          ...vm.validations[form],
           [key]: {
-            ...vnode.context.validations[form][key],
+            ...vm.validations[form][key],
             ...rules
           }
         }
       }
 
-      vnode.context.validations = vnode.context.$validator.init(data, null, validations)
+      vm.validations = vm.$validator.init(data, null, validations)
     }
   }
 }
