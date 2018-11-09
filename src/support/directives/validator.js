@@ -1,3 +1,5 @@
+import { initialForm } from '../services'
+
 export default {
   validator: {
     bind (el, binding, vnode) {
@@ -26,7 +28,7 @@ export default {
         }
       }
 
-      vm.validations = vm.$validator.init(data, null, validations)
+      vm.validations = initialForm(data, null, validations)
     }
   }
 }
