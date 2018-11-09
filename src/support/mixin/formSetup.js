@@ -9,14 +9,16 @@ const formSetup = {
 
     if (validation) {
       // overrides default messages based on global message options
-      if (this.$validator.messages && this.messages && this.messages.length) setMessages(this.messages, this.$validator.messages)
+      if (this.$validator.messages && this.messages && this.messages.length) {
+        this.$validator.setMessages(this.messages, this.$validator.messages)
+      }
 
-      setValidations.call(this, validation)
+      this.$validator.setValidations.call(this)
       this.$validator.validateOnBlur && this.$validator.setListenersTouch.call(this, this.validations)
 
       // set the component context values
-      this.$validator.context = {
-        ...this.$validator.context,
+      this.$validator.context.components = {
+        ...this.$validator.context.components,
         [this._uid]: this
       }
     }
