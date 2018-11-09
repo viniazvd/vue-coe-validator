@@ -123,7 +123,6 @@ export default {
 **You can also define validations with directives**
 ```vue
 <c-input
-  label="Razão social"
   name="name"
   :validation="$hasError('name', 'form1')"
   v-validator="{ required: true }"
@@ -150,6 +149,10 @@ mounted () {
 }
 ```
 
+```
+In the two cases above, you must have already defined your form object with its values.
+Directive and setValidations only set the validations.
+```
 
 ## Rules
 
