@@ -2,6 +2,9 @@ import RULES from '../rules/types'
 import * as VALIDATIONS from '../rules'
 
 export default function (validation, messages, form, key, value) {
+  const componentID = Object.keys(this.context.components)[Object.keys(this.context.components).length - 1]
+  const vm = this.context.components[componentID]
+
   if (!form) { console.warn('select a form to validate the data.') }
 
   let errors = []
@@ -18,7 +21,7 @@ export default function (validation, messages, form, key, value) {
     ...validation[form][key],
     errors,
     isTouched: true,
-    isDirty: true,
+    isDirty: !!value || vm.validations[form][key].isTouched,
     isFilled: !!value,
     isValid: errors.length <= 0
   }
