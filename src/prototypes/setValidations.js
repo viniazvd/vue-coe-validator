@@ -1,3 +1,5 @@
+import { initialForm } from '../support/services'
+
 function watchValidate (dataKey, input) {
   this.$watch(dataKey.concat('.', input), value => {
     this.validations = this.$validator.validate(this.validations, this.messages, dataKey, input, value)
@@ -13,9 +15,9 @@ function setValidations (validation, form) {
     validation = vm.$options.validation
   } else {
     validation = {
-      ...vm.$options.validation,
+      ...vm.validations,
       [form]: {
-        ...vm.$options.validation[form],
+        ...vm.validations[form],
         ...validation
       }
     }
@@ -33,7 +35,7 @@ function setValidations (validation, form) {
 
         vm.validations = {
           ...vm.validations,
-          ...vm.$validator.init(
+          ...initialForm(
             dataValue,
             dataKey, (
               validation[dataKey] || // when the validation is created automatically
