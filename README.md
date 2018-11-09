@@ -177,6 +177,7 @@ Name           | About
 setMessages    | wip              
 setValidations | wip
 reset          | params: (formName(String) - `optional`. Obs: no parameter resets inputs of all forms
+validateAll    | sorry, i'm lazy
 
 
 ## Customize validation messages globally
