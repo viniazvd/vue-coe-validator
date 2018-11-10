@@ -151,11 +151,6 @@ methods: {
 }
 ```
 
-```
-In the two cases above, you must have already defined your form object with its values.
-Directive and setValidations only set the validations.
-```
-
 ## Rules
 
 Name              | required | About
