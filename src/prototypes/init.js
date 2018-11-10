@@ -1,4 +1,4 @@
-import { getValidation, makeInitialForm, setValidations } from '../support/services'
+import { getValidation, makeInitialForm, setValidations, setProxy } from '../support/services'
 
 function init (__validation, form) {
   const instance = this || this.$validator
@@ -17,6 +17,8 @@ function init (__validation, form) {
       makeInitialForm.call(vm, validation, formKey, formValue)
       setValidations.call(vm, validation, form, formKey, formValue)
     })
+
+  setProxy.call(vm)
 }
 
 export default init
