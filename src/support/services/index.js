@@ -104,6 +104,20 @@ export function setValidations (validation, form, formKey, formValue) {
   })
 }
 
+export function setProxy () {
+  const validationsProxy = new Proxy(this.validations, {
+    deleteProperty (target, prop) {
+      if (prop in target) {
+        process.env.NODE_ENV === 'development' && console.warn(`you can not remove validations property`)
+
+        return true
+      }
+    }
+  })
+
+  this.validations = validationsProxy
+}
+
 function forceValidation (form, element) {
   const key = element.name
   const value = element.value
