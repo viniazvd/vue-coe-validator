@@ -124,7 +124,7 @@ export default {
 ```vue
 <c-input
   name="name"
-  :validation="$hasError('name', 'form1')"
+  :validation="$hasError('name')"
   v-validator="{ required: true }"
   v-model="form1.name"
 />
