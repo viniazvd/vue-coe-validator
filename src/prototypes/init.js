@@ -18,6 +18,8 @@ function init (__validation, form) {
       setValidations.call(vm, validation, form, formKey, formValue)
     })
 
+
+  // prevents forms delete
   setProxy.call(vm)
 }
 
