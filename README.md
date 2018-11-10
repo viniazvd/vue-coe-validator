@@ -38,16 +38,16 @@ mixins: [ formSetup ]
   <div id="app">
     <section>
       <h3>form1</h3>
-      <form id="form1">
+      <form name="form1">
         <c-input
           name="input1"
-          :validation="$hasError('input1', 'form1')"
+          :validation="$hasError('input1')"
           v-model="form1.input1"
         />
 
         <c-input
           name="input2"
-          :validation="$hasError('input2', 'form1')"
+          :validation="$hasError('input2')"
           v-model="form1.input2"
         />
       </form>
@@ -55,7 +55,7 @@ mixins: [ formSetup ]
 
     <section>
       <h3>form2</h3>
-      <form id="form2">
+      <form name="form2">
         <c-input
           name="input1"
           :validation="$hasError('input1', 'form2')"
@@ -124,7 +124,7 @@ export default {
 ```vue
 <c-input
   name="name"
-  :validation="$hasError('name', 'form1')"
+  :validation="$hasError('name')"
   v-validator="{ required: true }"
   v-model="form1.name"
 />
@@ -146,21 +146,16 @@ methods: {
     }
 
     // set validation for new field
-    this.$validator.setValidations(validations, 'form1')
+    this.$validator.init(validations, 'form1')
   }
 }
-```
-
-```
-In the two cases above, you must have already defined your form object with its values.
-Directive and setValidations only set the validations.
 ```
 
 ## Rules
 
 Name              | required | About
 -----             | -------  | -----
-form              | `true`   | set an id for the scope of the form
+form              | `true`   | set an name for the scope of the form
 input             | `true`   | name the input with the tag name and its respective form value
 
 
@@ -176,9 +171,9 @@ $isValidForm   | i'm lazy and you already know what this does
 
 Name           | About
 -----------    | ----------
-setMessages    | wip              
-setValidations | wip
+init           | wip
 reset          | params: (formName(String) - `optional`. Obs: no parameter resets inputs of all forms
+validate       | sorry, i'm lazy
 validateAll    | sorry, i'm lazy
 
 
