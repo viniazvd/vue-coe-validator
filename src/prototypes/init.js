@@ -1,38 +1,22 @@
-export default function (data, form, validation) {
-  if (!form) form = Object.keys(validation)
+import { getValidation, makeInitialForm, setValidations } from '../support/services'
 
-  const defaultState = {
-    isTouched: false,
-    isDirty: false,
-    isFilled: false,
-    isValid: false,
-    errors: []
-  }
+function init (__validation, form) {
+  const instance = this || this.$validator
+  const componentID = Object.keys(instance.context.components)[Object.keys(instance.context.components).length - 1]
+  const vm = instance.context.components[componentID]
 
-  const createForm = formName => Object.entries(data).reduce((initialForm, [key, value]) => {
-    const filled = { isFilled: !!value }
-    const dirted = { isDirty: !!value }
-    const validations = (validation && validation[key]) || (validation && validation[formName] && validation[formName][key])
+  const validation = getValidation.call(vm, __validation, form)
 
-    initialForm[key] = { ...defaultState, ...dirted, ...filled, ...validations }
+  /* eslint-disable */
+  const { validations = {}, messages = {}, ...data } = vm.$data
+  /* eslint-enable */
 
-    return initialForm
-  }, {})
-
-  // initialize by directive
-  if (Array.isArray(form)) {
-    let initialForm = {}
-
-    form.forEach(formName => {
-      initialForm = {
-        ...initialForm,
-        [formName]: createForm(formName)
-      }
+  Object
+    .entries(data)
+    .forEach(([formKey, formValue]) => {
+      makeInitialForm.call(vm, validation, formKey, formValue)
+      setValidations.call(vm, validation, form, formKey, formValue)
     })
-
-    return initialForm
-  }
-
-  // initialized by library configuration object
-  return { [form]: createForm({}) }
 }
+
+export default init

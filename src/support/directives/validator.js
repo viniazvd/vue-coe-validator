@@ -1,5 +1,3 @@
-import { initialForm } from '../services'
-
 export default {
   validator: {
     bind (el, binding, vnode) {
@@ -13,22 +11,11 @@ export default {
     },
 
     inserted (el, { value: rules }, vnode) {
-      const vm = vnode.context
       const [ form, key ] = vnode.data.model.expression.split('.')
-      const data = vm[form]
 
-      const validations = {
-        ...vm.validations,
-        [form]: {
-          ...vm.validations[form],
-          [key]: {
-            ...vm.validations[form][key],
-            ...rules
-          }
-        }
-      }
+      const validations = { [key]: rules }
 
-      vm.validations = initialForm(data, null, validations)
+      vnode.context.$validator.init(validations, form)
     }
   }
 }

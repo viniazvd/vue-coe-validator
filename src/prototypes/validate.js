@@ -17,11 +17,13 @@ export default function (validation, messages, form, key, value) {
     }
   })
 
+  const isTouched = vm.validations[form] && vm.validations[form][key] && vm.validations[form][key].isTouched
+
   const changed = {
     ...validation[form][key],
     errors,
     isTouched: true,
-    isDirty: !!value || vm.validations[form][key].isTouched,
+    isDirty: !!value || isTouched,
     isFilled: !!value,
     isValid: errors.length <= 0
   }

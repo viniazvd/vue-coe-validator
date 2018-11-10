@@ -1,4 +1,4 @@
-import { setContext, setSnapshot, setListenersTouch } from '../services'
+import { setContext, setSnapshot, setMessages, setListenersTouch } from '../services'
 import validator from '../directives/validator'
 
 const formSetup = {
@@ -16,10 +16,10 @@ const formSetup = {
 
       // overrides default messages based on global message options
       if (this.$validator.messages && this.messages && this.messages.length) {
-        this.$validator.setMessages(this.messages, this.$validator.messages)
+        setMessages(this.messages, this.$validator.messages)
       }
 
-      this.$validator.setValidations()
+      this.$validator.init()
       this.$validator.validateOnBlur && setListenersTouch.call(this)
     }
   },
@@ -34,20 +34,12 @@ const formSetup = {
   },
 
   methods: {
-    // helper method to prototype
-    $handlerBlur (form, element) {
-      this.validations = {
-        ...this.validations,
-        ...this.$validator.touch(this.validations, this.messages, form, element.name, element.value)
-      }
-    },
-
     $hasError (key, form) {
       if (this.validations && Object.keys(this.validations).length) {
         // in a single-form scenario, the scope is unique, and you do not have to explicitly name the form
         if (!form) form = Object.keys(this.validations)[0]
 
-        const input = this.validations[form][key]
+        const input = this.validations[form] && this.validations[form][key]
 
         return input && input.isTouched && !input.isValid && input.errors[0]
       }
