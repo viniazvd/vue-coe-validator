@@ -45,14 +45,6 @@ const formSetup = {
       }
 
       return false
-    },
-
-    $isValidForm (form) {
-      const isValid = Object
-        .entries(this.validations[form])
-        .every(([_, { isValid }]) => isValid)
-
-      return isValid
     }
   }
 }
