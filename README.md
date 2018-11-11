@@ -1,9 +1,9 @@
 <h1 align="center">vue-coe-validator ✅</h1>
 
 <p align="center">
-  <q>Another validation form for the Vue. Validates input fields of multiple forms and displays errors.</q>
+  <p align="center">Another validation form for the Vue. Validates input fields of multiple forms and displays errors.</p>
   <br />
-  <q>Note: without any dependencies.</q>
+  <p align="center">Note: without any dependencies.</p>
 </p>
 
 <p align="center">
