@@ -5,8 +5,11 @@ import { resetForm } from '../support/services/reset'
 export default function (formToReset) {
   const vm = getContext.call(this)
 
-  if (formToReset && !Object.keys(vm.validations).includes(formToReset)) {
-    console.warn('it was not possible to reset the $ of a form that does not exist.')
+  const isEnv = process.env.NODE_ENV === 'development'
+  const hasForm = Object.keys(vm.validations).includes(formToReset)
+
+  if (formToReset && !hasForm && isEnv) {
+    console.warn(`it was not possible to reset the ${formToReset} of a form that does not exist.`)
     return
   }
   if (!formToReset) formToReset = Object.keys(vm.validations)[0]
