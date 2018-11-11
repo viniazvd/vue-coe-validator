@@ -3,7 +3,7 @@ import * as VALIDATIONS from '../../rules'
 
 function getErrors (validations, messages, form, key, value) {
   const hasRule = rule => validations[form] && validations[form][key] && validations[form][key][rule]
-  const getMessage = rule => messages && messages[form][key] && messages[form][key][rule]
+  const getMessage = rule => messages && messages[form] && messages[form][key] && messages[form][key][rule]
   const getError = (rule, msg) => VALIDATIONS[rule](value, msg, validations, form, key)
 
   const RULES = Object.keys(VALIDATIONS)
