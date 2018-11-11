@@ -28,9 +28,9 @@ function validate (form, key, value) {
   const messages = vm.messages
 
   const errors = getErrors(validations, messages, form, key, value)
-  const isTouched = vm.validations[form] && vm.validations[form][key] && vm.validations[form][key].isTouched
+  const isTouched = validations[form] && validations[form][key] && validations[form][key].isTouched
 
-  vm.validations[form][key] = {
+  validations[form][key] = {
     ...validations[form][key],
     errors,
     isTouched: true,
