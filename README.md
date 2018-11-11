@@ -2,7 +2,7 @@
 
 <p align="center">
   <q>Another validation form for the Vue. Validates input fields of multiple forms and displays errors.</q>
-  <q>Note: without any dependencies.</q>
+  <p>Note: without any dependencies.</p>
 </p>
 
 <p align="center">
