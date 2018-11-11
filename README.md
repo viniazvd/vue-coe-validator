@@ -1,7 +1,8 @@
 <h1 align="center">vue-coe-validator ✅</h1>
 
 <p align="center">
-  <q>Another validation form for the Vue. Validates input fields of multiple forms and displays errors. Note: without any dependencies.</q>
+  <p align="center">Another validation form for the Vue. Validates input fields of multiple forms and displays errors.</p>
+  <p align="center">Note: without any dependencies.</p>
 </p>
 
 <p align="center">
@@ -9,7 +10,7 @@
 </p>
 
 <p align="center">
-  ✨ <a href="https://codesandbox.io/s/github/viniazvd/vue-coe-validator-example">Example</a>✨
+  ✨ <a href="https://codesandbox.io/s/github/viniazvd/vue-coe-validator-example">Example (WIP)</a>✨
 </p>
 
 **Install**
@@ -164,17 +165,15 @@ input             | `true`   | name the input with the tag name and its respecti
 Name           | About
 -----------    | ----------
 $hasError      | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
-$isValidForm   | i'm lazy and you already know what this does
 
 
 ## Validator methods
 
 Name           | About
 -----------    | ----------
-init           | wip
-reset          | params: (formName(String) - `optional`. Obs: no parameter resets inputs of all forms
-validate       | sorry, i'm lazy
-validateAll    | sorry, i'm lazy
+init           | params: (obj with valitations, formName(String)) - set validation for new field
+reset          | params: (formName(String) - required only when you have more than one form
+validate       | params: (formName(String) - required only when you have more than one form - Obs: returns a promise
 
 
 ## Customize validation messages globally
