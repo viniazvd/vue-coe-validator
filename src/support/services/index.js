@@ -1,4 +1,3 @@
-import RULES from '../../rules/types'
 import * as VALIDATIONS from '../../rules'
 
 export function getSnapshots () {
@@ -195,6 +194,7 @@ function getErrors (validations, messages, form, key, value) {
   const getMessage = rule => messages && messages[form][key] && messages[form][key][rule]
   const getError = (rule, msg) => VALIDATIONS[rule](value, msg, validations, form, key)
 
+  const RULES = Object.keys(VALIDATIONS)
   let errors = []
 
   RULES.some(rule => {
