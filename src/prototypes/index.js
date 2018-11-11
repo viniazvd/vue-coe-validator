@@ -1,3 +1,4 @@
+export { default as add } from './add'
 export { default as context } from './context'
 export { default as reset } from './reset'
 export { default as validate } from './validate'
