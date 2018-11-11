@@ -1,8 +1,7 @@
-import { resetForm, setListenersTouch } from '../support/services'
+import { getContext, resetForm, setListenersTouch, setProxy } from '../support/services'
 
 export default function (formToReset) {
-  const componentID = Object.keys(this.context.components)[Object.keys(this.context.components).length - 1]
-  const vm = this.context.components[componentID]
+  const vm = getContext.call(this)
 
   if (formToReset && !Object.keys(vm.validations).includes(formToReset)) {
     console.warn('it was not possible to reset the $ of a form that does not exist.')
@@ -19,6 +18,8 @@ export default function (formToReset) {
 
       return accForms
     }, {})
+
+  setProxy.call(vm)
 
   vm.$validator.validateOnBlur && setListenersTouch.call(vm)
 }
