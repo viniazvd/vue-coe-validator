@@ -11,8 +11,12 @@ function init (__validation, form) {
   const { validations = {}, messages = {}, ...data } = vm.$data
   /* eslint-enable */
 
+  // prevents unnecessary resources/loops
+  const dataWithValidation = ([key]) => !!(validation[key] && Object.keys(validation[key]).length)
+
   Object
     .entries(data)
+    .filter(dataWithValidation)
     .forEach(([formKey, formValue]) => {
       makeInitialForm.call(vm, validation, formKey, formValue)
       setValidations.call(vm, validation, form, formKey, formValue)

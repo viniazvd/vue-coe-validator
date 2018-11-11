@@ -19,10 +19,12 @@ function watchValidate (formKey, input) {
 }
 
 export function setValidations (validation, form, formKey, formValue) {
-  Object.keys(validation).forEach(validationKey => {
-    if ((form && form === formKey) || validationKey === formKey) {
-      // set validator for each input
-      for (const input in formValue) watchValidate.call(this, formKey, input)
+  // prevents unnecessary resources/loops
+  const inputWithValidation = input => Object.keys(validation[formKey] || {}).includes(input)
+
+  Object.keys(formValue).forEach(input => {
+    if ((form && form === formKey) || inputWithValidation(input)) {
+      watchValidate.call(this, formKey, input)
     }
   })
 }
