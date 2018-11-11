@@ -33,6 +33,17 @@ import { formSetup } from 'vue-coe-validator'
 mixins: [ formSetup ]
 ```
 
+**Pay attention:**
+```
+Be careful not to create a state with the name: validations and messages.
+
+These names are reserved for the library and overwriting them may compromise their behavior.
+```
+<p>
+  <a href="https://github.com/viniazvd/vue-coe-validator/issues/10">issue</a>
+</p>
+
+
 **How to use**
 ```vue
 <template>
