@@ -1,4 +1,6 @@
-import { getContext, resetForm, setListenersTouch, setProxy } from '../support/services'
+import { getContext } from '../support/services/context'
+import { setProxy, setListenersTouch } from '../support/services'
+import { resetForm } from '../support/services/reset'
 
 export default function (formToReset) {
   const vm = getContext.call(this)

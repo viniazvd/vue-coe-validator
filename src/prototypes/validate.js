@@ -1,4 +1,5 @@
-import { getContext, validateField } from '../support/services'
+import { getContext } from '../support/services/context'
+import { validateField } from '../support/services/validate'
 
 export default function (form) {
   const vm = getContext.call(this)

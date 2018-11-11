@@ -1,4 +1,7 @@
-import { setContext, setSnapshot, setMessages, setListenersTouch } from '../services'
+import { setMessages, setListenersTouch } from '../services'
+import { setContext } from '../services/context'
+import { setSnapshot } from '../services/snapshot'
+
 import validator from '../directives/validator'
 
 const formSetup = {

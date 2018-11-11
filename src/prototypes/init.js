@@ -1,4 +1,6 @@
-import { getContext, getValidation, makeInitialForm, setValidations, setProxy } from '../support/services'
+import { setProxy } from '../support/services'
+import { getContext } from '../support/services/context'
+import { makeInitialForm, getValidation, setValidations } from '../support/services/init'
 
 function init (__validation, form) {
   const vm = getContext.call(this)
