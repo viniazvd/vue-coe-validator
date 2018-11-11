@@ -22,7 +22,9 @@ const formSetup = {
         setMessages(this.messages, this.$validator.messages)
       }
 
+      // create validation states/rules
       this.$validator.init()
+
       this.$validator.validateOnBlur && setListenersTouch.call(this)
     }
   },
