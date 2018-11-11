@@ -15,7 +15,7 @@ export default {
 
       const validations = { [key]: rules }
 
-      vnode.context.$validator.init(validations, form)
+      vnode.context.$validator.add(validations, form)
     }
   }
 }
