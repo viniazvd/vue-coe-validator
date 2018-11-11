@@ -1,11 +1,11 @@
 import { setProxy } from '../support/services'
 import { getContext } from '../support/services/context'
-import { makeInitialForm, getValidation, setValidations } from '../support/services/init'
+import { makeInitialForm, setValidations } from '../support/services/init'
 
-function init (__validation, form) {
+function init () {
   const vm = getContext.call(this)
 
-  const validation = getValidation.call(vm, __validation, form)
+  const validation = vm.$options.validation
 
   /* eslint-disable */
   const { validations = {}, messages = {}, ...data } = vm.$data
@@ -19,7 +19,7 @@ function init (__validation, form) {
     .filter(dataWithValidation)
     .forEach(([formKey, formValue]) => {
       makeInitialForm.call(vm, validation, formKey, formValue)
-      setValidations.call(vm, validation, form, formKey, formValue)
+      setValidations.call(vm, validation, formKey, formValue)
     })
 
   setProxy.call(vm)

@@ -18,12 +18,12 @@ function watchValidate (formKey, input) {
   })
 }
 
-export function setValidations (validation, form, formKey, formValue) {
+export function setValidations (validation, formKey, formValue) {
   // prevents unnecessary resources/loops
   const inputWithValidation = input => Object.keys(validation[formKey] || {}).includes(input)
 
   Object.keys(formValue).forEach(input => {
-    if ((form && form === formKey) || inputWithValidation(input)) {
+    if (inputWithValidation(input)) {
       watchValidate.call(this, formKey, input)
     }
   })
