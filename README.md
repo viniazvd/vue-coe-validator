@@ -195,7 +195,7 @@ $hasError      | params: (inputName(String) -`required`, formName(String) -`requ
 
 Name           | About
 -----------    | ----------
-init           | params: (obj with valitations, formName(String)) - set validation for new field
+add            | params: (obj with valitations, formName(String)) - set validation for new field
 reset          | params: (formName(String) - required only when you have more than one form
 validate       | params: (formName(String) - required only when you have more than one form - Obs: returns a promise
 
