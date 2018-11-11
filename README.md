@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  ✨ <a href="https://codesandbox.io/s/github/viniazvd/vue-coe-validator-example">Example</a>✨
+  ✨ <a href="https://codesandbox.io/s/github/viniazvd/vue-coe-validator-example">Example (WIP)</a>✨
 </p>
 
 **Install**
