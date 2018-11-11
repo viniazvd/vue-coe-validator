@@ -39,8 +39,8 @@ Be careful not to create a state with the name: validations and messages.
 
 These names are reserved for the library and overwriting them may compromise their behavior.
 ```
-<p>
-  <a href="https://github.com/viniazvd/vue-coe-validator/issues/10">issue</a>
+<p align="center">
+  <a href="https://github.com/viniazvd/vue-coe-validator/issues/10">take a look at the issue</a>
 </p>
 
 
