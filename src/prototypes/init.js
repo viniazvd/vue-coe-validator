@@ -1,9 +1,7 @@
-import { getValidation, makeInitialForm, setValidations, setProxy } from '../support/services'
+import { getContext, getValidation, makeInitialForm, setValidations, setProxy } from '../support/services'
 
 function init (__validation, form) {
-  const instance = this || this.$validator
-  const componentID = Object.keys(instance.context.components)[Object.keys(instance.context.components).length - 1]
-  const vm = instance.context.components[componentID]
+  const vm = getContext.call(this)
 
   const validation = getValidation.call(vm, __validation, form)
 
@@ -18,8 +16,6 @@ function init (__validation, form) {
       setValidations.call(vm, validation, form, formKey, formValue)
     })
 
-
-  // prevents forms delete
   setProxy.call(vm)
 }
 
