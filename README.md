@@ -51,6 +51,12 @@ mixins: [ formSetup ]
           :validation="$hasError('input2')"
           v-model="form1.input2"
         />
+        
+        <c-input
+          name="input3"
+          :validation="$hasError('input3')"
+          v-model="form1.input3"
+        />
       </form>
     </section>
 
@@ -89,6 +95,13 @@ export default {
       input2: {
         required: true,
         pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
+      },
+      input3: {
+        required: true,
+        custom: [
+          (value) => value === '123',
+          (value) => typeof value === 'string'
+        ]
       }
     },
     form2: {
@@ -200,93 +213,113 @@ Vue.use(validator, {
 ## Validations
 
 <details>
-<summary>
-  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alphabetic.js'><b>alphabetic</b></a>
-  <p style='margin: 0; '>
-    <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b> Must be a alphabetic value</li>
-      <li><i>type:</i> Boolean</li>
-    </ul>
-  </p>
-</summary>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alphabetic.js'><b>alphabetic</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Must be a alphabetic value</li>
+        <li><i>type:</i> Boolean</li>
+      </ul>
+    </p>
+  </summary>
 
-```javascript
-{
-  alphabetic: true,
-}
-```
+  ```javascript
+  {
+    alphabetic: true,
+  }
+  ```
 </details>
 
 <details>
-<summary>
-  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alpha.js'><b>alpha</b></a>
-  <p style='margin: 0; '>
-    <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b> Must only contain letters and numbers</li>
-      <li><i>type:</i> Boolean</li>
-    </ul>
-  </p>
-</summary>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/alpha.js'><b>alpha</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Must only contain letters and numbers</li>
+        <li><i>type:</i> Boolean</li>
+      </ul>
+    </p>
+  </summary>
 
-```javascript
-{
-  alpha: true,
-}
-```
+  ```javascript
+  {
+    alpha: true,
+  }
+  ```
 </details>
 
 <details>
-<summary>
-  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/pattern.js'><b>pattern</b></a>
-  <p style='margin: 0; '>
-    <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b> Invalid, try again</li>
-      <li><i>type:</i> String</li>
-    </ul>
-  </p>
-</summary>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/pattern.js'><b>pattern</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Invalid, try again</li>
+        <li><i>type:</i> String</li>
+      </ul>
+    </p>
+  </summary>
 
-```javascript
-{
-  pattern: true,
-}
-```
+  ```javascript
+  {
+    pattern: true,
+  }
+  ```
 </details>
 
 
 
 <details>
-<summary>
-  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/numeric.js'><b>numeric</b></a>
-  <p style='margin: 0; '>
-    <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b> Must be a numeric value</li>
-      <li><i>type:</i> Boolean</li>
-    </ul>
-  </p>
-</summary>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/numeric.js'><b>numeric</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Must be a numeric value</li>
+        <li><i>type:</i> Boolean</li>
+      </ul>
+    </p>
+  </summary>
 
-```javascript
-{
-  numeric: true,
-}
-```
+  ```javascript
+  {
+    numeric: true,
+  }
+  ```
 </details>
 
 <details>
-<summary>
-  <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/required.js'><b>required</b></a>
-  <p style='margin: 0; '>
-    <ul style='margin: 0; padding: 0; list-style-type: none;'>
-      <li><b>default message:</b> Field is required</li>
-      <li><i>type:</i> Boolean</li>
-    </ul>
-  </p>
-</summary>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/required.js'><b>required</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Field is required</li>
+        <li><i>type:</i> Boolean</li>
+      </ul>
+    </p>
+  </summary>
 
-```javascript
-{
-  required: true,
-}
-```
+  ```javascript
+  {
+    required: true,
+  }
+  ```
+</details>
+
+<details>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/custom.js'><b>custom</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Campo inválido</li>
+        <li><i>type:</i> Array</li>
+      </ul>
+    </p>
+  </summary>
+
+  ```javascript
+  {
+    custom: [
+      `callbacks...`
+    ]
+  }
+  ```
 </details>
