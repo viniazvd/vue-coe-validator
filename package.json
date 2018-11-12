@@ -11,7 +11,9 @@
     "form"
   ],
   "main": "dist/vue-coe-validator.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
@@ -22,11 +24,34 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "bili src/index.js --formats cjs,es,umd"
+    "build": "bili src/index.js --formats cjs,es,umd --banner --js buble",
+    "test": "ava tests/index.js --verbose --no-cache --lib es2018"
+  },
+  "dependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/register": "^7.0.0"
   },
   "devDependencies": {
+    "ava": "1.0.0-rc.2",
     "bili": "^3.1.2",
     "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.17"
+  },
+  "ava": {
+    "files": [
+      "./tests/index.js"
+    ],
+    "sources": [
+      "./src/index.js"
+    ],
+    "concurrency": 5,
+    "failFast": true
+  },
+  "babel": {
+    "babelrc": false,
+    "presets": [
+      "es2015",
+      "react"
+    ]
   }
 }
