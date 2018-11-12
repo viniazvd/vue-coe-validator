@@ -171,7 +171,7 @@ methods: {
     }
 
     // set validation for new field
-    this.$validator.init(validations, 'form1')
+    this.$validator.add(validations, 'form1')
   }
 }
 ```
