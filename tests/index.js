@@ -1,11 +1,29 @@
-require("@babel/register")
 import test from 'ava'
 
-import resetForm from '../src/support/services/reset.js'
+import { resetForm } from '../src/support/services/reset'
 
-test('foo', t => {
-  console.log(resetForm)
-	t.pass()
+test.skip('resetForm', t => {
+  const fieldReseted = {
+    name: {
+      errors: [],
+      isDirty: false,
+      isFilled: false,
+      isTouched: false,
+      isValid: false,
+    }
+  }
+
+  const field = {
+    name: {
+      errors: ['error'],
+      isDirty: true,
+      isFilled: true,
+      isTouched: true,
+      isValid: true,
+    }
+  }
+
+	t.is(fieldReseted, resetForm(field))
 })
 
 test('bar', async t => {
