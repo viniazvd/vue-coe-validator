@@ -13,7 +13,27 @@ export function setMessages (source, newMessages) {
   }
 }
 
+export function getData () {
+  /* eslint-disable */
+  const { validations = {}, messages = {}, ...data } = this.$data
+  /* eslint-enable */
+
+  return data
+}
+
+export function watchValidate (formKey, input) {
+  const unwatch = this.$watch(formKey.concat('.', input), value => {
+    validateField.call(this, formKey, input, value)
+  })
+
+  this.$on('hook:beforeDestroy', unwatch)
+}
+
 export function setProxy () {
+  // issue!?
+  // setProxy works...
+  // however, it creates a deep proxy reference.
+
   const validationsProxy = new Proxy(this.validations, {
     deleteProperty (target, prop) {
       if (prop in target) {
@@ -40,10 +60,14 @@ function forceValidation (form, element, key = element.name, value = element.val
   }
 }
 
-function addTouchListener (formName, input) {
+export function addTouchListener (formName, inputElement, addByDirective) {
   // register events only for those who have validation
-  if (this.validations[formName] && this.validations[formName][input.name]) {
-    input.addEventListener('blur', () => forceValidation.call(this, formName, input), { once: true })
+  const hasValidation = this.validations[formName] && this.validations[formName][inputElement.name]
+
+  // check if addEventListener has already been set in the conditional below? worth it?
+
+  if (hasValidation || addByDirective) {
+    inputElement.addEventListener('blur', () => forceValidation.call(this, formName, inputElement), { once: true })
   }
 }
 
