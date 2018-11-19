@@ -1,3 +1,5 @@
+import { addTouchListener } from '../services'
+
 export default {
   validator: {
     bind (el, binding, vnode) {
@@ -11,11 +13,20 @@ export default {
     },
 
     inserted (el, { value: rules }, vnode) {
+      const vm = vnode.context
       const [ form, key ] = vnode.data.model.expression.split('.')
+      const value = vnode.data.model.value
 
-      const validations = { [key]: rules }
+      const inputElement = el.querySelector('input')
 
-      vnode.context.$validator.add(validations, form)
+      // add validation states/rules
+      vm.$validator.add(form, key, value, rules)
+
+      // extra and optional flag to handle addTouchListener
+      const addByDirective = true
+
+      // set validate onBlur
+      vm.$validator.validateOnBlur && addTouchListener.call(vm, form, inputElement, addByDirective)
     }
   }
 }
