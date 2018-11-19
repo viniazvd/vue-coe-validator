@@ -1,20 +1,31 @@
-import { setProxy } from '../support/services'
+import { setProxy, watchValidate } from '../support/services'
 import { getContext } from '../support/services/context'
-import { makeInitialForm, getValidation, setValidations } from '../support/services/init'
+import { setFieldStates } from '../support/services/add'
 
-function add (__validation, form) {
+function add (form, key, value, rules) {
   const vm = getContext.call(this)
 
-  const validation = getValidation.call(vm, __validation, form)
+  const addByDirective = typeof form === 'string'
+  const addByUser = typeof form === 'object'
 
-  /* eslint-disable */
-  const { validations = {}, messages = {}, ...data } = vm.$data
-  /* eslint-enable */
+  if (addByDirective) {
+    // prevents actions already taken
+    if (!vm['validations'][form][key]) {
+      setFieldStates.call(vm, form, key, value, rules)
+      watchValidate.call(vm, form, key)
+    }
+  }
 
-  const dataWithValidation = Object.entries(data).filter(([formKey]) => formKey === form)
-
-  dataWithValidation.forEach(([_, value]) => setValidations.call(vm, validation, form, value))
-  makeInitialForm.call(vm, validation, form, dataWithValidation[0][1])
+  if (addByUser) {
+    Object.entries(form).forEach(([input, _rules]) => {
+      // prevents actions already taken
+      if (!vm['validations'][key][input]) {
+        // key === formName
+        setFieldStates.call(vm, key, input, value = '', _rules)
+        watchValidate.call(vm, key, input)
+      }
+    })
+  }
 
   setProxy.call(vm)
 }
