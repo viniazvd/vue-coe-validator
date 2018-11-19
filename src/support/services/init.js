@@ -1,4 +1,4 @@
-import { validateField } from '../services/validate'
+import { watchValidate } from '../services'
 
 export function getValidation (validation, form) {
   return !validation
@@ -12,21 +12,10 @@ export function getValidation (validation, form) {
     }
 }
 
-function watchValidate (formKey, input) {
-  this.$watch(formKey.concat('.', input), value => {
-    validateField.call(this, formKey, input, value)
-  })
-}
-
-export function setValidations (validation, formKey, formValue) {
-  // prevents unnecessary resources/loops
-  const inputWithValidation = input => Object.keys(validation[formKey] || {}).includes(input)
-
-  Object.keys(formValue).forEach(input => {
-    if (inputWithValidation(input)) {
-      watchValidate.call(this, formKey, input)
-    }
-  })
+export function setValidations (form, validations) {
+  Object
+    .keys(validations)
+    .forEach(input => watchValidate.call(this, form, input))
 }
 
 const defaultState = {
@@ -37,33 +26,22 @@ const defaultState = {
   errors: []
 }
 
-function setFormStates (data, form, validation) {
+function getFormStates (form, data, validation) {
   return {
-    [form]: Object.entries(data).reduce((initialForm, [key, value]) => {
+    [form]: Object.entries(validation).reduce((accForm, [input, rules]) => {
+      const value = data[input]
       const filled = { isFilled: !!value }
       const dirted = { isDirty: !!value }
-      const validations = validation && validation[key]
 
-      if (validations !== undefined) {
-        initialForm[key] = { ...defaultState, ...dirted, ...filled, ...validations }
-      }
+      accForm[input] = { ...defaultState, ...dirted, ...filled, ...rules }
 
-      return initialForm
+      return accForm
     }, {})
   }
 }
 
-export function makeInitialForm (validation, formKey, formValue) {
-  if (Object.keys(validation).includes(formKey)) {
-    this.validations = {
-      ...this.validations,
-      ...setFormStates(
-        formValue,
-        formKey, (
-          validation[formKey] || // when validation is created automatically
-          validation // when validation is created dynamically
-        )
-      )
-    }
-  }
+export function setFormStates (form, data, validation) {
+  const newFormStates = getFormStates(form, data, validation)
+
+  this.validations = { ...this.validations, ...newFormStates }
 }
