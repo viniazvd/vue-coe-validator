@@ -25,6 +25,7 @@ const formSetup = {
       // create validation states/rules
       this.$validator.init()
 
+      // set validate onBlur
       this.$validator.validateOnBlur && setListenersTouch.call(this)
     }
   },
