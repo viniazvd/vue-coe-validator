@@ -1,18 +1,13 @@
 import { getContext } from '../services/context'
-import * as VALIDATIONS from '../../rules'
+import { RULES, hasRule, getMessage, getError } from './'
 
 function getErrors (validations, messages, form, key, value) {
-  const hasRule = rule => validations[form] && validations[form][key] && validations[form][key][rule]
-  const getMessage = rule => messages && messages[form] && messages[form][key] && messages[form][key][rule]
-  const getError = (rule, msg) => VALIDATIONS[rule](value, msg, validations, form, key)
-
-  const RULES = Object.keys(VALIDATIONS)
   let errors = []
 
   RULES.some(rule => {
-    if (hasRule(rule)) {
-      const msg = getMessage(rule)
-      const error = getError(rule, msg)
+    if (hasRule(rule, validations, form, key)) {
+      const msg = getMessage(rule, messages, form, key)
+      const error = getError(rule, validations, form, key, value, msg)
 
       if (error) errors = [ ...errors, error ]
     }
