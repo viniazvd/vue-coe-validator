@@ -1,20 +1,5 @@
 import { getContext } from '../services/context'
-import { RULES, hasRule, getMessage, getError } from './'
-
-function getErrors (validations, messages, form, key, value) {
-  let errors = []
-
-  RULES.some(rule => {
-    if (hasRule(rule, validations, form, key)) {
-      const msg = getMessage(rule, messages, form, key)
-      const error = getError(rule, validations, form, key, value, msg)
-
-      if (error) errors = [ ...errors, error ]
-    }
-  })
-
-  return errors
-}
+import { getErrors } from './'
 
 function validate (form, key, value) {
   const vm = getContext.call(this)

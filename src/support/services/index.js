@@ -93,16 +93,31 @@ export function setListenersTouch () {
   })
 }
 
-export const RULES = Object.keys(VALIDATIONS)
+const RULES = Object.keys(VALIDATIONS)
 
-export function hasRule (rule, validations, form, key) {
+function hasRule (rule, validations, form, key) {
   return validations[form] && validations[form][key] && validations[form][key][rule]
 }
 
-export function getMessage (rule, messages, form, key) {
+function getMessage (rule, messages, form, key) {
   return messages && messages[form] && messages[form][key] && messages[form][key][rule]
 }
 
-export function getError (rule, validations, form, key, value, msg) {
+function getError (rule, validations, form, key, value, msg) {
   return VALIDATIONS[rule](value, msg, validations, form, key)
+}
+
+export function getErrors (validations, messages, form, key, value) {
+  let errors = []
+
+  RULES.some(rule => {
+    if (hasRule(rule, validations, form, key)) {
+      const msg = getMessage(rule, messages, form, key)
+      const error = getError(rule, validations, form, key, value, msg)
+
+      if (error) errors = [ ...errors, error ]
+    }
+  })
+
+  return errors
 }
