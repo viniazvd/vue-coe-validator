@@ -63,7 +63,7 @@ function forceValidation (form, element, key = element.name, value = element.val
 
 export function addTouchListener (formName, inputElement, addByDirective) {
   // register events only for those who have validation
-  const hasValidation = this.validations[formName] && this.validations[formName][inputElement.name]
+  const hasValidation = inputElement && this.validations[formName] && this.validations[formName][inputElement.name]
 
   // check if addEventListener has already been set in the conditional below? worth it?
 
@@ -77,6 +77,7 @@ export function setListenersTouch () {
 
   // dynamically records listeners to activate touch inputs
   vm.$nextTick(() => {
+    // TODO: find reason for not running tests
     const NodeListForms = vm.$el.querySelectorAll('form[name]')
 
     if (NodeListForms.length) {
