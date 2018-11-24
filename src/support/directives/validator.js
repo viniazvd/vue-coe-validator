@@ -1,10 +1,12 @@
 import { addTouchListener } from '../services'
+import { getFormValues } from '../services/directive'
 
 export default {
   validator: {
     bind (el, binding, vnode) {
       const vm = vnode.context
-      const [ form ] = vnode.data.model.expression.split('.')
+
+      const { form } = getFormValues(vnode)
 
       // if the form property does not exist in validations, set.
       if (!vm.validations[form]) {
@@ -14,10 +16,8 @@ export default {
 
     inserted (el, { value: rules }, vnode) {
       const vm = vnode.context
-      const [ form, key ] = vnode.data.model.expression.split('.')
-      const value = vnode.data.model.value
 
-      const inputElement = el.querySelector('input')
+      const { form, key, value, inputElement } = getFormValues(vnode, el)
 
       // add validation states/rules
       vm.$validator.add(form, key, value, rules)
