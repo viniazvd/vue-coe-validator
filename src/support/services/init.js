@@ -1,4 +1,4 @@
-import { watchValidate } from '../services'
+import { watchValidate, defaultState } from '../services'
 
 export function getValidation (validation, form) {
   return !validation
@@ -16,14 +16,6 @@ export function setValidations (form, validations) {
   Object
     .keys(validations)
     .forEach(input => watchValidate.call(this, form, input))
-}
-
-const defaultState = {
-  isTouched: false,
-  isDirty: false,
-  isFilled: false,
-  isValid: false,
-  errors: []
 }
 
 function getFormStates (form, data, validation) {
