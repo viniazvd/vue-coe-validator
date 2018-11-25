@@ -14,6 +14,16 @@ export function setMessages (source, newMessages) {
   }
 }
 
+export const defaultState = {
+  isLoading: false,
+  isChanged: false,
+  isTouched: false,
+  isDirty: false,
+  isFilled: false,
+  isValid: false,
+  errors: []
+}
+
 export function getData () {
   /* eslint-disable */
   const { validations = {}, messages = {}, ...data } = this.$data
@@ -63,7 +73,7 @@ function forceValidation (form, element, key = element.name, value = element.val
 
 export function addTouchListener (formName, inputElement, addByDirective) {
   // register events only for those who have validation
-  const hasValidation = inputElement && this.validations[formName] && this.validations[formName][inputElement.name]
+  const hasValidation = this.validations[formName] && this.validations[formName][inputElement.name]
 
   // check if addEventListener has already been set in the conditional below? worth it?
 
@@ -77,7 +87,7 @@ export function setListenersTouch () {
 
   // dynamically records listeners to activate touch inputs
   vm.$nextTick(() => {
-    // TODO: find reason for not running tests
+    // TO-DO. issue: does not work in tests
     const NodeListForms = vm.$el.querySelectorAll('form[name]')
 
     if (NodeListForms.length) {
@@ -96,7 +106,7 @@ export function setListenersTouch () {
 
 const RULES = Object.keys(VALIDATIONS)
 
-function hasRule (rule, validations, form, key) {
+function isRule (rule, validations, form, key) {
   return validations[form] && validations[form][key] && validations[form][key][rule]
 }
 
@@ -108,11 +118,11 @@ function getError (rule, validations, form, key, value, msg) {
   return VALIDATIONS[rule](value, msg, validations, form, key)
 }
 
-export function getErrors (validations, messages, form, key, value) {
+export function getSyncErrors (validations, messages, form, key, value) {
   let errors = []
 
   RULES.some(rule => {
-    if (hasRule(rule, validations, form, key)) {
+    if (isRule(rule, validations, form, key) && rule !== 'customAsync') {
       const msg = getMessage(rule, messages, form, key)
       const error = getError(rule, validations, form, key, value, msg)
 
@@ -121,4 +131,11 @@ export function getErrors (validations, messages, form, key, value) {
   })
 
   return errors
+}
+
+export async function getAsyncErrors (validations, messages, form, key, value) {
+  const msg = getMessage('customAsync', messages, form, key)
+  const error = await getError('customAsync', validations, form, key, value, msg)
+
+  return error
 }
