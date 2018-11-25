@@ -1,10 +1,4 @@
-const defaultState = {
-  isTouched: false,
-  isDirty: false,
-  isFilled: false,
-  isValid: false,
-  errors: []
-}
+import { defaultState } from '../services'
 
 function setFormState (key, value, rules) {
   const filled = { isFilled: !!value }
