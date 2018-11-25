@@ -1,4 +1,4 @@
-const defaultStates = ['isDirty', 'isFilled', 'isTouched', 'isValid']
+const defaultStates = ['isLoading', 'isChanged', 'isDirty', 'isFilled', 'isTouched', 'isValid']
 
 function setValue (state, value) {
   if (defaultStates.includes(state)) return false
