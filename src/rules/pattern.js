@@ -1,5 +1,5 @@
-export default function (value, msg, forms, form, key) {
-  const pattern = forms[form][key].pattern
+export default function (value, msg, field) {
+  const pattern = field['pattern']
 
   return value && !pattern.test(value) && (msg || 'Campo inválido')
 }

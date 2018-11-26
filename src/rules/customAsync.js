@@ -1,5 +1,5 @@
-export default function (value, msg, validations, form, key) {
-  const callbacks = validations[form][key]['customAsync']
+export default function (value, msg, field) {
+  const callbacks = field['customAsync']
   const promisses = callbacks.map(f => f(value))
 
   return Promise.all(promisses)
