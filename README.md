@@ -195,10 +195,10 @@ $hasError      | params: (inputName(String) -`required`, formName(String) -`requ
 
 Name           | About
 -----------    | ----------
-add            | params: (validations<Object>), formName<String>) - set validation for new field
-touch          | params: (inputName<String>, formName<String>) - inputName is required and formName is required only when you have more than one form
-reset          | params: (formName<String>) - required only when you have more than one form
-validate       | params: (formName<String>) - required only when you have more than one form - Obs: returns a promise
+add            | params: validations<Object>, formName<String>) - set validation for new field
+touch          | params: inputName<String>, formName<String> - inputName is required and formName is required only when you have more than one form
+reset          | params: formName<String> - required only when you have more than one form
+validate       | params: formName<String> - required only when you have more than one form - Obs: returns a promise
 
 
 ## Customize validation messages globally
