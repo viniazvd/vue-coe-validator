@@ -47,41 +47,35 @@ These names are reserved for the library and overwriting them may compromise the
 **How to use**
 ```vue
 <template>
-  <div id="app">
-    <section>
-      <h3>form1</h3>
-      <form name="form1">
-        <c-input
-          name="input1"
-          :validation="$hasError('input1')"
-          v-model="form1.input1"
-        />
+  <section>
+    <form name="form1">
+      <c-input
+        name="input1"
+        :validation="$hasError('input1')"
+        v-model="form1.input1"
+      />
 
-        <c-input
-          name="input2"
-          :validation="$hasError('input2')"
-          v-model="form1.input2"
-        />
-        
-        <c-input
-          name="input3"
-          :validation="$hasError('input3')"
-          v-model="form1.input3"
-        />
-      </form>
-    </section>
+      <c-input
+        name="input2"
+        :validation="$hasError('input2')"
+        v-model="form1.input2"
+      />
 
-    <section>
-      <h3>form2</h3>
-      <form name="form2">
-        <c-input
-          name="input1"
-          :validation="$hasError('input1', 'form2')"
-          v-model="form2.input1"
-        />
-      </form>
-    </section>
-  </div>
+      <c-input
+        name="input3"
+        :validation="$hasError('input3')"
+        v-model="form1.input3"
+      />
+    </form>
+
+    <form name="form2">
+      <c-input
+        name="input1"
+        :validation="$hasError('input1', 'form2')"
+        v-model="form2.input1"
+      />
+    </form>
+  </section>
 </template>
 
 <script>
