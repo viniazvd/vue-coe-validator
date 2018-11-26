@@ -1,6 +1,6 @@
 import { getContext } from '../support/services/context'
 import { setProxy, setListenersTouch } from '../support/services'
-import { resetForm } from '../support/services/reset'
+import { resetFieldStates } from '../support/services/reset'
 
 export default function (formToReset) {
   const vm = getContext.call(this)
@@ -12,17 +12,12 @@ export default function (formToReset) {
     console.warn(`it was not possible to reset the ${formToReset} of a form that does not exist.`)
     return
   }
+
   if (!formToReset) formToReset = Object.keys(vm.validations)[0]
 
-  vm.validations = Object
-    .entries(vm.validations)
-    .reduce((accForms, [form, fields]) => {
-      form === formToReset
-        ? accForms[form] = resetForm(fields)
-        : accForms[form] = fields
-
-      return accForms
-    }, {})
+  Object
+    .entries(vm.validations[formToReset])
+    .forEach(([field, states]) => resetFieldStates.call(this, formToReset, field, states))
 
   setProxy.call(vm)
 
