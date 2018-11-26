@@ -17,11 +17,11 @@ function add (form, key, value, rules) {
   }
 
   if (addByUser) {
-    Object.entries(form).forEach(([input, _rules]) => {
+    Object.entries(form).forEach(([input, rules]) => {
       // prevents actions already taken
       if (!vm['validations'][key][input]) {
         // key === formName
-        setField.call(vm, key, input, value = '', _rules)
+        setField.call(vm, key, input, value = '', rules)
         setValidate.call(vm, key, input)
       }
     })
