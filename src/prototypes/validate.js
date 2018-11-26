@@ -7,18 +7,15 @@ export default function (form) {
   if (!form) form = Object.keys(vm.validations)[0]
 
   return new Promise(resolve => {
-    let errors = []
+    const isFormValid = Object
+      .keys(vm.validations[form])
+      .reduce((errors, field) => {
+        validateField.call(vm, form, field, vm[form][field])
+        errors = [ ...errors, vm.validations[form][field].isValid ]
 
-    Object.entries(vm.validations)
-      .filter(([formName]) => formName === form)
-      .forEach(([_, states]) => {
-        for (const key of Object.keys(states)) {
-          validateField.call(vm, form, key, vm[form][key])
-          errors.push(vm.validations[form][key].isValid)
-        }
-      })
-
-    const isFormValid = errors.every(error => error)
+        return errors
+      }, [])
+      .every(error => error)
 
     resolve(isFormValid)
   })
