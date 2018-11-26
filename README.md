@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/VitorLuizC/vue-data-tablee"><img src="https://img.shields.io/npm/l/vuelidation.svg" alt="License" target="_blank"></a>
+  <a href="#"><img src="https://img.shields.io/npm/l/vuelidation.svg" alt="License" target="_blank"></a>
 </p>
 
 <p align="center">
@@ -47,41 +47,35 @@ These names are reserved for the library and overwriting them may compromise the
 **How to use**
 ```vue
 <template>
-  <div id="app">
-    <section>
-      <h3>form1</h3>
-      <form name="form1">
-        <c-input
-          name="input1"
-          :validation="$hasError('input1')"
-          v-model="form1.input1"
-        />
+  <section>
+    <form name="form1">
+      <c-input
+        name="input1"
+        :validation="$hasError('input1')"
+        v-model="form1.input1"
+      />
 
-        <c-input
-          name="input2"
-          :validation="$hasError('input2')"
-          v-model="form1.input2"
-        />
-        
-        <c-input
-          name="input3"
-          :validation="$hasError('input3')"
-          v-model="form1.input3"
-        />
-      </form>
-    </section>
+      <c-input
+        name="input2"
+        :validation="$hasError('input2')"
+        v-model="form1.input2"
+      />
 
-    <section>
-      <h3>form2</h3>
-      <form name="form2">
-        <c-input
-          name="input1"
-          :validation="$hasError('input1', 'form2')"
-          v-model="form2.input1"
-        />
-      </form>
-    </section>
-  </div>
+      <c-input
+        name="input3"
+        :validation="$hasError('input3')"
+        v-model="form1.input3"
+      />
+    </form>
+
+    <form name="form2">
+      <c-input
+        name="input1"
+        :validation="$hasError('input1', 'form2')"
+        v-model="form2.input1"
+      />
+    </form>
+  </section>
 </template>
 
 <script>
@@ -105,7 +99,15 @@ export default {
       },
       input2: {
         required: true,
-        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
+        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i,
+        customAsync: [
+          value => new Promise(resolve => setTimeout(() => {
+            resolve(value === 'viniazvd@gmail.com')
+          }, 2000)),
+          value => new Promise(resolve => setTimeout(() => {
+            resolve(typeof value === 'string')
+          }, 3000))
+        ]
       },
       input3: {
         required: true,
@@ -136,8 +138,7 @@ export default {
     },
     form2: {
       input1: {
-        required: 'tá vazio, não pode!',
-        alpha: 'tá errado, é alpha!'
+        required: 'tá vazio, não pode!'
       }
     }
   }
