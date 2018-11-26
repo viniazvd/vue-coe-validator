@@ -12,8 +12,8 @@ function init () {
   Object
     .entries(data)
     .filter(dataWithValidation)
-    .forEach(([form, data]) => {
-      setFormFields.call(vm, form, data, validation[form])
+    .forEach(([form, fields]) => {
+      setFormFields.call(vm, form, fields, validation[form])
       setValidations.call(vm, form, validation[form])
     })
 
