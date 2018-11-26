@@ -1,6 +1,6 @@
-import { setProxy, watchValidate } from '../support/services'
+import { setProxy, setValidate } from '../support/services'
 import { getContext } from '../support/services/context'
-import { setFieldStates } from '../support/services/add'
+import { setField } from '../support/services/add'
 
 function add (form, key, value, rules) {
   const vm = getContext.call(this)
@@ -11,8 +11,8 @@ function add (form, key, value, rules) {
   if (addByDirective) {
     // prevents actions already taken
     if (!vm['validations'][form][key]) {
-      setFieldStates.call(vm, form, key, value, rules)
-      watchValidate.call(vm, form, key)
+      setField.call(vm, form, key, value, rules)
+      setValidate.call(vm, form, key)
     }
   }
 
@@ -21,8 +21,8 @@ function add (form, key, value, rules) {
       // prevents actions already taken
       if (!vm['validations'][key][input]) {
         // key === formName
-        setFieldStates.call(vm, key, input, value = '', _rules)
-        watchValidate.call(vm, key, input)
+        setField.call(vm, key, input, value = '', _rules)
+        setValidate.call(vm, key, input)
       }
     })
   }
