@@ -1,4 +1,4 @@
-import { setProxy, setValidate } from '../support/services'
+import { setProxy, setValidation } from '../support/services'
 import { getContext } from '../support/services/context'
 import { setField } from '../support/services/add'
 
@@ -12,7 +12,7 @@ function add (form, key, value, rules) {
     // prevents actions already taken
     if (!vm['validations'][form][key]) {
       setField.call(vm, form, key, value, rules)
-      setValidate.call(vm, form, key)
+      setValidation.call(vm, form, key)
     }
   }
 
@@ -22,7 +22,7 @@ function add (form, key, value, rules) {
       if (!vm['validations'][key][input]) {
         // key === formName
         setField.call(vm, key, input, value = '', rules)
-        setValidate.call(vm, key, input)
+        setValidation.call(vm, key, input)
       }
     })
   }
