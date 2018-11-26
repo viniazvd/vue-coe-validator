@@ -1,4 +1,4 @@
-import { setMessages, setListenersTouch } from '../services'
+import { setMessages, setListeners } from '../services'
 import { setContext } from '../services/context'
 import { setSnapshot } from '../services/snapshot'
 
@@ -26,7 +26,7 @@ const formSetup = {
       this.$validator.init()
 
       // set validate onBlur
-      this.$validator.validateOnBlur && setListenersTouch.call(this)
+      this.$validator.validateOnBlur && setListeners.call(this)
     }
   },
 
