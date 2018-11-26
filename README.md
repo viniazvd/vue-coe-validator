@@ -99,7 +99,15 @@ export default {
       },
       input2: {
         required: true,
-        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
+        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i,
+        customAsync: [
+          value => new Promise(resolve => setTimeout(() => {
+            resolve(value === 'viniazvd@gmail.com')
+          }, 2000)),
+          value => new Promise(resolve => setTimeout(() => {
+            resolve(typeof value === 'string')
+          }, 3000))
+        ]
       },
       input3: {
         required: true,
@@ -125,24 +133,12 @@ export default {
       },
       input2: {
         required: 'preenche tudo!',
-        pattern: 'precisa ser e-mail!',
-        customAsync: [
-          value => new Promise(resolve => setTimeout(() => {
-            resolve(value === 'viniazvd@gmail.com')
-          }, 2000)),
-          value => new Promise(resolve => setTimeout(() => {
-            resolve(typeof value === 'string')
-          }, 3000))
-        ]
+        pattern: 'precisa ser e-mail!'
       }
     },
     form2: {
       input1: {
-        required: 'tá vazio, não pode!',
-        custom: [
-          (value) => value === '123',
-          (value) => typeof value === 'string'
-        ]
+        required: 'tá vazio, não pode!'
       }
     }
   }
