@@ -334,3 +334,24 @@ Vue.use(validator, {
   }
   ```
 </details>
+
+<details>
+  <summary>
+    <a href='https://github.com/viniazvd/vue-coe-validator/blob/master/src/rules/customAsync.js'><b>customAsync</b></a>
+    <p style='margin: 0; '>
+      <ul style='margin: 0; padding: 0; list-style-type: none;'>
+        <li><b>default message:</b> Campo inválido</li>
+        <li><i>type:</i> Array</li>
+      </ul>
+    </p>
+  </summary>
+
+  ```javascript
+  {
+    customAsync: [
+      `callbacks...`
+    ]
+  }
+  ```
+</details>
+
