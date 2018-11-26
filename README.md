@@ -351,7 +351,7 @@ Vue.use(validator, {
   ```javascript
   {
     customAsync: [
-      `callbacks...`
+      `promisses...`
     ]
   }
   ```
