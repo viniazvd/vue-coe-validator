@@ -32,7 +32,7 @@ export function getData () {
   return data
 }
 
-export function setValidate (formKey, input) {
+export function setValidation (formKey, input) {
   const unwatch = this.$watch(formKey.concat('.', input), value => {
     validateField.call(this, formKey, input, value)
   })

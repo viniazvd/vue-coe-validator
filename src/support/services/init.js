@@ -1,4 +1,4 @@
-import { setValidate, defaultState } from '../services'
+import { setValidation, defaultState } from '../services'
 
 export function getValidation (validation, form) {
   return !validation
@@ -15,7 +15,7 @@ export function getValidation (validation, form) {
 export function setValidations (form, validations) {
   Object
     .keys(validations)
-    .forEach(input => setValidate.call(this, form, input))
+    .forEach(input => setValidation.call(this, form, input))
 }
 
 function getFormFields (form, data, validation) {
