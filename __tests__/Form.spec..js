@@ -20,6 +20,8 @@ describe('TESTS', () => {
   test('default value without input value', () => {
     const {
       isTouched,
+      isChanged,
+      isLoading,
       isDirty,
       isFilled,
       isValid,
@@ -28,6 +30,8 @@ describe('TESTS', () => {
 
     expect(isTouched).toBe(false)
     expect(isDirty).toBe(false)
+    expect(isChanged).toBe(false)
+    expect(isLoading).toBe(false)
     expect(isFilled).toBe(false)
     expect(isValid).toBe(false)
     expect(errors).toEqual([])
@@ -36,6 +40,8 @@ describe('TESTS', () => {
   test('default value with input value', () => {
     const {
       isTouched,
+      isChanged,
+      isLoading,
       isDirty,
       isFilled,
       isValid,
@@ -44,6 +50,8 @@ describe('TESTS', () => {
 
     expect(isTouched).toBe(false)
     expect(isDirty).toBe(true)
+    expect(isChanged).toBe(false)
+    expect(isLoading).toBe(false)
     expect(isFilled).toBe(true)
     expect(isValid).toBe(false)
     expect(errors).toEqual([])
@@ -57,6 +65,8 @@ describe('TESTS', () => {
     expect(wrapper.vm.validations.form1.name).toEqual({
       errors: ['Must be a alphabetic value'],
       isTouched: true,
+      isChanged: true,
+      isLoading: false,
       isDirty: true,
       isFilled: true,
       isValid: false,
