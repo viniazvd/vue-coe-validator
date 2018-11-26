@@ -31,7 +31,7 @@ export function getData () {
   return data
 }
 
-export function setValidate (form, field) {
+export function setValidation (form, field) {
   const unwatch = this.$watch(form.concat('.', field), () => {
     this.$validator.validateField(field, form)
   })
