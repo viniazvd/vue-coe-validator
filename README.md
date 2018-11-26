@@ -238,7 +238,7 @@ Vue.use(validator, {
 
   ```javascript
   {
-    alphabetic: true,
+    alphabetic: true
   }
   ```
 </details>
@@ -256,7 +256,7 @@ Vue.use(validator, {
 
   ```javascript
   {
-    alpha: true,
+    alpha: true
   }
   ```
 </details>
@@ -274,7 +274,7 @@ Vue.use(validator, {
 
   ```javascript
   {
-    pattern: true,
+    pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i  
   }
   ```
 </details>
@@ -294,7 +294,7 @@ Vue.use(validator, {
 
   ```javascript
   {
-    numeric: true,
+    numeric: true
   }
   ```
 </details>
@@ -312,7 +312,7 @@ Vue.use(validator, {
 
   ```javascript
   {
-    required: true,
+    required: true
   }
   ```
 </details>
@@ -331,7 +331,8 @@ Vue.use(validator, {
   ```javascript
   {
     custom: [
-      `callbacks...`
+      (value) => value === '123',
+      (value) => typeof value === 'string'
     ]
   }
   ```
@@ -351,7 +352,12 @@ Vue.use(validator, {
   ```javascript
   {
     customAsync: [
-      `promisses...`
+      value => new Promise(resolve => setTimeout(() => {
+        resolve(value === 'viniazvd@gmail.com')
+      }, 2000)),
+      value => new Promise(resolve => setTimeout(() => {
+        resolve(typeof value === 'string')
+      }, 3000))
     ]
   }
   ```
