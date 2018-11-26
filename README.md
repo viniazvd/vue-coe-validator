@@ -204,9 +204,12 @@ validateField  |        `(formName)`       | touches a field and checks if it is
 validateForm   |        `(formName)`       | touch the form fields and check if it is valid
 isFormValid    |        `(formName)`       | promise that returns a boolean
 
-<p>**validations:** `type Object.`</p>
-<p>**inputName:** `type String.`</p>
-<p>**formName:** `type String. Obs: required only when you have more than one form!`</p>
+<p style='color: red;'>**validations**: </p>
+-`type Object.`
+<p>**inputName**: </p>
+-`type String.`
+<p>**formName**: </p> 
+-`type String. Obs: required only when you have more than one form!
 
 
 ## Customize validation messages globally
