@@ -194,8 +194,8 @@ $hasError      | params: (inputName(String) -`required`, formName(String) -`requ
 
 ## Validator methods
 
-Name           | Params                    | About
------------    | -----------------------   | -----
+Name           | Params                   | About
+:--------------|:------------------------:|:--------------------
 add            | `(validations, formName)` | set validation for new field
 touch          |  `(inputName, formName)`  | touches a field (isTouched = true) 
 resetField     |        `(formName)`       | resets a field
@@ -204,9 +204,9 @@ validateField  |        `(formName)`       | touches a field and checks if it is
 validateForm   |        `(formName)`       | touch the form fields and check if it is valid
 isFormValid    |        `(formName)`       | promise that returns a boolean
 
-***validations:** `type Object.`
-***inputName:** `type String.`
-***formName:** `type String. Obs: required only when you have more than one form!`
+<p>**validations:** `type Object.`</p>
+<p>**inputName:** `type String.`</p>
+<p>**formName:** `type String. Obs: required only when you have more than one form!`</p>
 
 
 ## Customize validation messages globally
