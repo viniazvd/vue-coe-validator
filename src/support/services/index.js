@@ -1,5 +1,4 @@
 import { getContext } from '../services/context'
-import { validateField } from '../services/validate'
 import * as VALIDATIONS from '../../rules'
 
 export function setMessages (source, newMessages) {
@@ -32,9 +31,9 @@ export function getData () {
   return data
 }
 
-export function setValidation (formKey, input) {
-  const unwatch = this.$watch(formKey.concat('.', input), value => {
-    validateField.call(this, formKey, input, value)
+export function setValidate (form, field) {
+  const unwatch = this.$watch(form.concat('.', field), () => {
+    this.$validator.validateField(field, form)
   })
 
   this.$on('hook:beforeDestroy', unwatch)
@@ -58,16 +57,16 @@ export function setProxy () {
   this.validations = validationsProxy
 }
 
-function forceValidation (form, element, key = element.name, value = element.value) {
+function forceValidation (form, element, field = element.name, value = element.value) {
   const vm = getContext.call(this)
 
-  const isTouched = vm.validations[form] && vm.validations[form][key] && vm.validations[form][key].isTouched
+  const isTouched = vm.validations[form] && vm.validations[form][field] && vm.validations[form][field].isTouched
 
   // to prevent unnecessary checks
   if (vm.validations && !isTouched) {
     vm.validations[form][element.name].isTouched = true
 
-    validateField.call(this, form, key, value || '')
+    this.$validator.validateField(field, form)
   }
 }
 
