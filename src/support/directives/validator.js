@@ -22,11 +22,8 @@ export default {
       // add validation states/rules
       vm.$validator.add(form, key, value, rules)
 
-      // extra and optional flag to handle addTouchListener
-      const addByDirective = true
-
       // set validate onBlur
-      vm.$validator.validateOnBlur && addTouchListener.call(vm, form, inputElement, addByDirective)
+      vm.$validator.validateOnBlur && addTouchListener.call(vm, form, inputElement)
     }
   }
 }
