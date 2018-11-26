@@ -70,34 +70,42 @@ function forceValidation (form, element, field = element.name, value = element.v
   }
 }
 
-export function addTouchListener (formName, inputElement, addByDirective) {
-  const inputName = addByDirective ? inputElement : inputElement.name
+export function addTouchListener (formName, inputElement) {
+  const inputName = inputElement && inputElement.getAttribute('name')
 
   // register events only for those who have validation
-  const hasValidation = this.validations[formName] && this.validations[formName][inputName]
+  const hasValidation = inputElement && this.validations[formName] && this.validations[formName][inputName]
 
   // check if addEventListener has already been set in the conditional below? worth it?
 
-  if (hasValidation || addByDirective) {
+  if (hasValidation) {
     inputElement.addEventListener('blur', () => forceValidation.call(this, formName, inputElement), { once: true })
   }
 }
 
-export function setListenersTouch () {
+export function setListener (form, field) {
+  const vm = getContext.call(this)
+
+  const inputElement = vm.$el.querySelector(`form[name="${form}"] [name="${field}"] > input`)
+  addTouchListener.call(vm, form, inputElement)
+}
+
+export function setListeners () {
   const vm = getContext.call(this)
 
   // dynamically records listeners to activate touch inputs
   vm.$nextTick(() => {
     // TO-DO. issue: does not work in tests
-    const NodeListForms = vm.$el.querySelectorAll('form[name]')
+    const formListNode = vm.$el.querySelectorAll('form[name]')
 
-    if (NodeListForms.length) {
-      NodeListForms.forEach(NodeForm => {
-        const formName = NodeForm.getAttribute('name')
+    if (formListNode.length) {
+      formListNode.forEach(NodeForm => {
+        const form = NodeForm.getAttribute('name')
 
         Array
           .from(NodeForm)
-          .forEach(inputElement => addTouchListener.call(vm, formName, inputElement))
+          .filter(node => !!node.attributes.name)
+          .forEach(inputElement => addTouchListener.call(vm, form, inputElement))
       })
     } else {
       console.warn('follow the instructions in the documentation to correctly register the form')
@@ -140,4 +148,22 @@ export async function getAsyncErrors (validations, messages, form, key, value) {
   const error = await getError('customAsync', value, msg, validations[form][key])
 
   return error
+}
+
+export function hasForm (form) {
+  const vm = getContext.call(this)
+
+  const isDevEnv = process.env.NODE_ENV === 'development'
+  const hasForm = Object.keys(vm.validations).includes(form)
+
+  return hasForm && isDevEnv
+}
+
+export function hasField (form, field) {
+  const vm = getContext.call(this)
+
+  const isDevEnv = process.env.NODE_ENV === 'development'
+  const hasForm = Object.keys(vm.validations[form]).includes(field)
+
+  return hasForm && isDevEnv
 }
