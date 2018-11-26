@@ -1,7 +1,7 @@
 import { getContext } from '../services/context'
 import { getSyncErrors, getAsyncErrors } from './'
 
-function validate (form, key, value) {
+export function validateField (form, key, value) {
   const vm = getContext.call(this)
 
   const validations = vm.validations
@@ -11,10 +11,9 @@ function validate (form, key, value) {
 
   state.isLoading = true
 
-  const hasCustomAsyncRule = state['customAsync']
-
   const syncErrors = getSyncErrors(validations, messages, form, key, value)
   const isTouched = validations[form] && state && state.isTouched
+  const hasCustomAsyncRule = state['customAsync']
 
   state.errors = syncErrors
   state.isLoading = (hasCustomAsyncRule && !!hasCustomAsyncRule.length) || false
@@ -41,5 +40,3 @@ function validate (form, key, value) {
     state.isFilled = false
   }
 }
-
-export const validateField = validate

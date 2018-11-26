@@ -1,6 +1,6 @@
 import { defaultState } from '../services'
 
-function setFormState (key, value, rules) {
+function getField (key, value, rules) {
   const filled = { isFilled: !!value }
   const dirted = { isDirty: !!value }
 
@@ -9,12 +9,12 @@ function setFormState (key, value, rules) {
   }
 }
 
-export function setFieldStates (form, key, value, rules) {
+export function setField (form, key, value, rules) {
   this.validations = {
     ...this.validations,
     [form]: {
       ...this.validations[form],
-      ...setFormState(key, value, rules)
+      ...getField(key, value, rules)
     }
   }
 }

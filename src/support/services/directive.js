@@ -20,7 +20,5 @@ export function getFormValues (vnode, el) {
     inputElement = el
   }
 
-  return {
-    form, key, value, inputElement
-  }
+  return { form, key, value, inputElement }
 }

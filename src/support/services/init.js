@@ -1,4 +1,4 @@
-import { watchValidate, defaultState } from '../services'
+import { setValidate, defaultState } from '../services'
 
 export function getValidation (validation, form) {
   return !validation
@@ -15,10 +15,10 @@ export function getValidation (validation, form) {
 export function setValidations (form, validations) {
   Object
     .keys(validations)
-    .forEach(input => watchValidate.call(this, form, input))
+    .forEach(input => setValidate.call(this, form, input))
 }
 
-function getFormStates (form, data, validation) {
+function getFormFields (form, data, validation) {
   return {
     [form]: Object.entries(validation).reduce((accForm, [input, rules]) => {
       const value = data[input]
@@ -32,8 +32,8 @@ function getFormStates (form, data, validation) {
   }
 }
 
-export function setFormStates (form, data, validation) {
-  const newFormStates = getFormStates(form, data, validation)
+export function setFormFields (form, data, validation) {
+  const newFormStates = getFormFields(form, data, validation)
 
   this.validations = { ...this.validations, ...newFormStates }
 }
