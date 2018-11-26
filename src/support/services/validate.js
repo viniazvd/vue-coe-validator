@@ -1,6 +1,13 @@
 import { getContext } from '../services/context'
 import { getSyncErrors, getAsyncErrors } from './'
 
+function setStates (state, value, isTouched) {
+  state.isChanged = true
+  state.isTouched = true
+  state.isDirty = !!value || isTouched
+  state.isFilled = !!value
+}
+
 export function validateField (form, key, value) {
   const vm = getContext.call(this)
 
@@ -13,22 +20,24 @@ export function validateField (form, key, value) {
 
   const syncErrors = getSyncErrors(validations, messages, form, key, value)
   const isTouched = validations[form] && state && state.isTouched
-  const hasCustomAsyncRule = state['customAsync']
+  const hasCustomAsyncRule = state['customAsync'] && state['customAsync'].length
 
-  state.errors = syncErrors
-  state.isLoading = (hasCustomAsyncRule && !!hasCustomAsyncRule.length) || false
-  state.isChanged = true
-  state.isTouched = true
-  state.isDirty = !!value || isTouched
-  state.isFilled = !!value
-  state.isValid = syncErrors.length <= 0
+  setStates(state, value, isTouched)
+
+  if (!hasCustomAsyncRule) {
+    state.errors = syncErrors
+    state.isValid = syncErrors.length <= 0
+    state.isLoading = false
+  }
 
   if (hasCustomAsyncRule && value) {
     getAsyncErrors(validations, messages, form, key, value)
       .then(asyncErrors => {
-        state.errors = [...syncErrors, asyncErrors]
+        // must be filtered because asyncErrors is a boolean false or string
+        // this prevents a 'false' value within errors
+        state.errors = [...syncErrors, asyncErrors].filter(error => error)
+        state.isValid = state.errors.length <= 0
         state.isLoading = false
-        state.isValid = [...syncErrors, asyncErrors].length <= 0
       })
   }
 
