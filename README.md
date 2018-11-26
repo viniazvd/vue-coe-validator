@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/VitorLuizC/vue-data-tablee"><img src="https://img.shields.io/npm/l/vuelidation.svg" alt="License" target="_blank"></a>
+  <a href="#"><img src="https://img.shields.io/npm/l/vuelidation.svg" alt="License" target="_blank"></a>
 </p>
 
 <p align="center">
@@ -131,13 +131,24 @@ export default {
       },
       input2: {
         required: 'preenche tudo!',
-        pattern: 'precisa ser e-mail!'
+        pattern: 'precisa ser e-mail!',
+        customAsync: [
+          value => new Promise(resolve => setTimeout(() => {
+            resolve(value === 'viniazvd@gmail.com')
+          }, 2000)),
+          value => new Promise(resolve => setTimeout(() => {
+            resolve(typeof value === 'string')
+          }, 3000))
+        ]
       }
     },
     form2: {
       input1: {
         required: 'tá vazio, não pode!',
-        alpha: 'tá errado, é alpha!'
+        custom: [
+          (value) => value === '123',
+          (value) => typeof value === 'string'
+        ]
       }
     }
   }
