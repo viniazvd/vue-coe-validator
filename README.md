@@ -184,13 +184,13 @@ Name              | required | About
 form              | `true`   | set an name for the scope of the form
 input             | `true`   | name the input with the tag name and its respective form value
 
-
 ## Mixin methods
 
-Name           | About
------------    | ----------
-$hasError      | params: (inputName(String) -`required`, formName(String) -`required only with multiple forms`)
+Name        | Params                           | About
+:-----------|:--------------------------------:|:-----------
+$hasError   | `(inputName[str], formName[str])`| returns a boolean
 
+*formName: required only when you have more than one form
 
 ## Validator methods
 
