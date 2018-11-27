@@ -204,11 +204,13 @@ validateField  |        `(formName)`       | touches a field and checks if it is
 validateForm   |        `(formName)`       | touch the form fields and check if it is valid
 isFormValid    |        `(formName)`       | promise that returns a boolean
 
-<p style="color:red;">validations:</p>
+<p style='color:red'>validations:</p>
 -type Object
-<p style="color:red;">inputName:</p>
+
+<p style='color:red'>inputName:</p>
 -type String
-<p style="color:red;">formName:</p> 
+
+<p style='color:red'>formName:</p> 
 -type String 
 -required only when you have more than one form
 
