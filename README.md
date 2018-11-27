@@ -194,15 +194,15 @@ $hasError      | params: (inputName(String) -`required`, formName(String) -`requ
 
 ## Validator methods
 
-Name           | Params                   | About
-:--------------|:------------------------:|:--------------------
+Name           | Params                             | About
+:--------------|:----------------------------------:|:--------------------
 add            | `(validations[obj], formName[str])`| set validation for new field
-touch          |  `(inputName, formName)` | touches a field (isTouched = true) 
-resetField     |        `(formName)`      | resets a field
-resetForm      |        `(formName)`      | resets a form
-validateField  |        `(formName)`      | touches a field and checks if it is valid
-validateForm   |        `(formName)`      | touch the form fields and check if it is valid
-isFormValid    |        `(formName)`      | promise that returns a boolean
+touch          |  `(inputName[str], formName[str])` | touches a field (isTouched = true) 
+resetField     |        `(formName[str])`           | resets a field
+resetForm      |        `(formName[str])`           | resets a form
+validateField  |        `(formName[str])`           | touches a field and checks if it is valid
+validateForm   |        `(formName[str])`           | touch the form fields and check if it is valid
+isFormValid    |        `(formName[str])`           | promise that returns a boolean
  
 *formName: required only when you have more than one form
 
