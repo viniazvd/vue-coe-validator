@@ -1,7 +1,16 @@
 import { getContext } from '../support/services/context'
-import { setListener, hasField } from '../support/services'
+import { setListener } from '../support/services'
 
 const defaultStates = ['isLoading', 'isChanged', 'isDirty', 'isFilled', 'isTouched', 'isValid']
+
+function hasField (form, field) {
+  const vm = getContext.call(this)
+
+  const isDevEnv = process.env.NODE_ENV === 'development'
+  const hasForm = Object.keys(vm.validations[form]).includes(field)
+
+  return hasForm && isDevEnv
+}
 
 function resetState (state, value) {
   if (defaultStates.includes(state)) return false

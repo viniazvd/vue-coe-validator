@@ -1,5 +1,14 @@
 import { getContext } from '../support/services/context'
-import { setListeners, hasForm } from '../support/services'
+import { setListeners } from '../support/services'
+
+function hasForm (form) {
+  const vm = getContext.call(this)
+
+  const isDevEnv = process.env.NODE_ENV === 'development'
+  const hasForm = Object.keys(vm.validations).includes(form)
+
+  return hasForm && isDevEnv
+}
 
 export default function (form) {
   const vm = getContext.call(this)
