@@ -1,17 +1,5 @@
 import { setValidation, defaultState } from '../services'
 
-export function getValidation (validation, form) {
-  return !validation
-    ? this.$options.validation
-    : {
-      ...this.validations,
-      [form]: {
-        ...this.validations[form],
-        ...validation
-      }
-    }
-}
-
 export function setValidations (form, validations) {
   Object
     .keys(validations)
