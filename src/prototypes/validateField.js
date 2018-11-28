@@ -37,7 +37,7 @@ function validateField (key, form) {
       .then(asyncErrors => {
         // must be filtered because asyncErrors is a boolean false or string
         // this prevents a 'false' value within errors
-        state.errors = [...syncErrors, asyncErrors].filter(error => error)
+        state.errors = [...syncErrors, asyncErrors].filter(Boolean)
         state.isValid = state.errors.length <= 0
         state.isLoading = false
       })
