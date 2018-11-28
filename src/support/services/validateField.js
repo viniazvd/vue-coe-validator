@@ -1,5 +1,22 @@
 import * as VALIDATIONS from '../../rules'
 
+export const hasCustomAsyncRule = state => state['customAsync'] && state['customAsync'].length
+
+export function setActiveFields (state, value, isTouched, syncErrors) {
+  state.errors = syncErrors
+  state.isChanged = true
+  state.isDirty = !!value || isTouched
+  state.isFilled = !!value
+  state.isTouched = true
+  state.isValid = !syncErrors.length
+}
+
+export function setInactiveFields (state, syncErrors) {
+  state.errors = syncErrors
+  state.isValid = !syncErrors.length
+  state.isLoading = false
+}
+
 const RULES = Object.keys(VALIDATIONS)
 
 function isRule (rule, validations, form, key) {
