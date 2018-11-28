@@ -59,24 +59,17 @@ export function setProxy () {
 function forceValidation (form, element, field = element.name, value = element.value) {
   const vm = getContext.call(this)
 
-  const isTouched = vm.validations[form] && vm.validations[form][field] && vm.validations[form][field].isTouched
-
-  // to prevent unnecessary checks
-  if (vm.validations && !isTouched) {
-    vm.validations[form][element.name].isTouched = true
-
-    this.$validator.validateField(field, form)
-  }
+  vm.validations[form][field].isTouched = true
+  this.$validator.validateField(field, form)
 }
 
 export function addTouchListener (formName, inputElement) {
   const inputName = inputElement && inputElement.getAttribute('name')
 
+  const validations = (inputElement && this.validations[formName] && this.validations[formName][inputName]) || {}
+  const hasValidation = Object.keys(validations).length
+
   // register events only for those who have validation
-  const hasValidation = inputElement && this.validations[formName] && this.validations[formName][inputName]
-
-  // check if addEventListener has already been set in the conditional below? worth it?
-
   if (hasValidation) {
     inputElement.addEventListener('blur', () => forceValidation.call(this, formName, inputElement), { once: true })
   }
