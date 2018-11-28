@@ -1,12 +1,5 @@
 import { getContext } from '../support/services/context'
-import { getSyncErrors, getAsyncErrors } from '../support/services/validateField'
-
-function setStates (state, value, isTouched) {
-  state.isChanged = true
-  state.isTouched = true
-  state.isDirty = !!value || isTouched
-  state.isFilled = !!value
-}
+import { hasCustomAsyncRule, setActiveFields, setInactiveFields, getSyncErrors, getAsyncErrors } from '../support/services/validateField'
 
 function validateField (key, form) {
   const vm = getContext.call(this)
@@ -21,34 +14,21 @@ function validateField (key, form) {
   state.isLoading = true
 
   const syncErrors = getSyncErrors(validations, messages, form, key, value)
-  const isTouched = validations[form] && state && state.isTouched
-  const hasCustomAsyncRule = state['customAsync'] && state['customAsync'].length
+  const isTouched = validations[form] && (state && state.isTouched)
 
-  setStates(state, value, isTouched)
+  setActiveFields(state, value, isTouched, syncErrors)
 
-  if (!hasCustomAsyncRule) {
-    state.errors = syncErrors
-    state.isValid = syncErrors.length <= 0
-    state.isLoading = false
-  }
+  if (!hasCustomAsyncRule(state) && value) setInactiveFields(state, syncErrors)
 
-  if (hasCustomAsyncRule && value) {
+  if (hasCustomAsyncRule(state)) {
     getAsyncErrors(validations, messages, form, key, value)
       .then(asyncErrors => {
         // must be filtered because asyncErrors is a boolean false or string
         // this prevents a 'false' value within errors
         state.errors = [...syncErrors, asyncErrors].filter(Boolean)
-        state.isValid = state.errors.length <= 0
+        state.isValid = !state.errors.length
         state.isLoading = false
       })
-  }
-
-  // scenario:
-  // -when the field has asynchronous validation
-  // -field has 1 character typed and user erases (field is empty)
-  if (hasCustomAsyncRule && !value) {
-    state.isLoading = false
-    state.isFilled = false
   }
 }
 
