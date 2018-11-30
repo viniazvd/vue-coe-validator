@@ -46,10 +46,20 @@ export function setProxy () {
   const validationsProxy = new Proxy(this.validations, {
     deleteProperty (target, prop) {
       if (prop in target) {
-        process.env.NODE_ENV === 'development' && console.warn(`you can not remove validations property`)
+        process.env.NODE_ENV === 'development' && console.warn(`you can not remove validations property.`)
 
         return true
       }
+    },
+
+    get () {
+      return Reflect.get(...arguments)
+    },
+
+    set (target, prop) {
+      process.env.NODE_ENV === 'development' && console.warn(`please dont reasign properties on ${prop}.`)
+
+      return true
     }
   })
 
