@@ -106,7 +106,7 @@ export function setListeners () {
 
         Array
           .from(NodeForm)
-          .filter(node => !!node.attributes.name)
+          .filter(node => node && !!node.attributes.name)
           .forEach(inputElement => addTouchListener.call(vm, form, inputElement))
       })
     } else {
