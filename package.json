@@ -17,9 +17,7 @@
   "module": "dist/vue-coe-validator.es.js",
   "jsdelivr": "dist/vue-coe-validator.js",
   "umd:main": "dist/vue-coe-validator.js",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
@@ -31,7 +29,7 @@
   "license": "MIT",
   "scripts": {
     "build": "bili",
-    "test": "jest --verbose"
+    "test": "jest"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.25",
@@ -46,22 +44,5 @@
     "vue": "^2.5.17",
     "vue-jest": "^3.0.0",
     "vue-template-compiler": "^2.5.17"
-  },
-  "jest": {
-    "testMatch": [
-      "**/tests/**/*.js"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
-    },
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/src/$1"
-    }
   }
 }
