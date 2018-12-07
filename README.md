@@ -99,22 +99,10 @@ export default {
       },
       input2: {
         required: true,
-        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i,
-        customAsync: [
-          value => new Promise(resolve => setTimeout(() => {
-            resolve(value === 'viniazvd@gmail.com')
-          }, 2000)),
-          value => new Promise(resolve => setTimeout(() => {
-            resolve(typeof value === 'string')
-          }, 3000))
-        ]
+        pattern: /^[A-Z0-9_'%=+!`#~$*?^{}&|-]+([.][A-Z0-9_'%=+!`#~$*?^{}&|-]+)*@[A-Z0-9-]+(\.[A-Z0-9-]+)+$/i
       },
       input3: {
-        required: true,
-        custom: [
-          (value) => value === '123',
-          (value) => typeof value === 'string'
-        ]
+        required: true
       }
     },
     form2: {
