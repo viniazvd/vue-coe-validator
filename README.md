@@ -144,7 +144,7 @@ export default {
 />
 ```
 
-**Or use the setValidations function by passing the validation object and form name**
+**Or programmatically, using $validator.add**
 ```js
 methods: {
   addField () {
