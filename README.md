@@ -197,7 +197,7 @@ isFormValid    |        `(formName[str])`           | promise that returns a boo
 
 ## Customize validation messages globally
 ```javascript
-import validator from './support/plugin/validator'
+import { validator } from 'vue-coe-validator'
 
 Vue.use(validator, {
   messages: {
@@ -209,7 +209,7 @@ Vue.use(validator, {
 
 ## Set validate on blur
 ```javascript
-import validator from './support/plugin/validator'
+import { validator } from 'vue-coe-validator'
 
 Vue.use(validator, { 
   validateOnBlur: true // default is false 
