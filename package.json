@@ -17,7 +17,6 @@
   "module": "dist/vue-coe-validator.es.js",
   "jsdelivr": "dist/vue-coe-validator.js",
   "umd:main": "dist/vue-coe-validator.js",
-  "files": [ "dist" ],
   "author": {
     "name": "Vinicius Azevedo",
     "email": "viniazvd@gmail.com"
